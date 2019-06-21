@@ -1,0 +1,553 @@
+:root {
+  --White: #ffffff;
+  --OffWhite: #f5f5f5;
+  --LightBlue: #495971;
+  --BrightBlue: #6099b4;
+  --SkyBlue: #607d8b;
+  --DarkBlue: #3d495a;
+  --Black: #000000;
+  --Overlay: #0000003b;
+  --LightGray: #ddd;
+  --DarkGray: #444;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  z-index: 9;
+}
+header.bg-light {
+  background-color: var(--LightBlue) !important;
+}
+.logo {
+  position: fixed;
+  bottom: 7px;
+  left: 0;
+  width: 100%;
+  background-color: var(--White);
+  max-width: 216px;
+  text-align: center;
+}
+.fixed-top {
+  top: 50px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  max-width: 50%;
+  opacity: 1;
+  transform: translateY(0px);
+  border-top: solid 2px var(--SkyBlue);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.toggled {
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  z-index: -1 !important;
+  transform: translateY(20px) !important;
+}
+nav {
+  transition: transform 0.5s ease;
+}
+.navbar-light .nav {
+  height: auto;
+  overflow: visible;
+}
+.mainTopNav {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: 100%;
+  max-width: 250px;
+  height: 41px;
+  color: var(--White);
+  border: solid thin var(--LightGray);
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+}
+.mainTopNav li {
+  display: inline-block;
+  width: 50%;
+  font-size: 13px;
+  position: relative;
+  cursor: pointer;
+}
+.tableToggleWrap.messageBox {
+  top: 25px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  right: 0;
+  margin: auto;
+}
+.tableToggleWrap.messageBox li {
+  width: 100%;
+}
+.filter.tableToggleWrap {
+  right: 30px;
+}
+.filterInput {
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  height: 50px;
+  min-width: 200px;
+}
+.nav-link {
+  color: var(--LightBlue);
+  padding: 4px 1rem;
+  font-size: 13px;
+}
+.navlink:hover,
+a:hover,
+.btn:hover {
+  color: var(--LightBlue);
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+  line-height: 1;
+}
+a {
+  color: var(--BrightBlue);
+}
+.highlite div div {
+  color: var(--SkyBlue);
+}
+svg {
+  cursor: pointer;
+}
+h5 {
+  text-transform: uppercase;
+}
+.overflow {
+  overflow: hidden !important;
+}
+.line {
+  width: 70%;
+  position: relative;
+  top: -2px;
+  right: -6px;
+}
+.menuToggle {
+  position: relative;
+  top: 0;
+  left: -6px;
+  z-index: 3;
+  width: 231px;
+  color: var(--White);
+  background-color: var(--BrightBlue);
+  height: 50px;
+  border-radius: 0;
+}
+.menuToggle .line {
+  position: absolute;
+  right: 0;
+  top: 39px;
+}
+.menuToggle .line:after {
+  border-color: var(--BrightBlue) transparent;
+}
+.line:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 7px 0;
+  border-color: var(--LightBlue) transparent;
+  display: block;
+  width: 2px;
+  z-index: 1;
+  top: 8px;
+  left: 45%;
+}
+.line:before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 7px 0;
+  border-color: var(--BrightBlue) transparent;
+  display: block;
+  width: 2px;
+  z-index: 1;
+  top: 9px;
+  left: 45%;
+}
+.active {
+  color: var(--BrightBlue) !important;
+  transition: all 0.5s ease;
+  background-color: var(--OffWhite);
+  border-left: solid 2px var(--SkyBlue);
+  margin-left: 5px;
+}
+.innerNav .active {
+  background-color: var(--DarkBlue);
+}
+.topLi {
+  background-color: transparent;
+  padding-left: 10px;
+  color: var(--BrightBlue);
+  border-left: solid 0 transparent;
+  margin-left: 0;
+  font-weight: bold;
+}
+.show {
+  display: inline-block;
+}
+.hide,
+.highlite span,
+.PermissionsDrop span {
+  display: none !important;
+}
+.innerNav {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 225px;
+  height: 100vh;
+  background-color: var(--LightBlue);
+}
+.innerNav nav {
+  width: 100%;
+  max-width: 100%;
+}
+.innerNav li {
+  display: block;
+  width: 100%;
+  line-height: 2;
+}
+.innerNav .nav-link {
+  color: var(--White);
+}
+.innerNavName {
+  text-transform: uppercase;
+  text-align: left;
+  margin: 10px 0 0 0;
+}
+.innerNavName a {
+  color: var(--Black);
+}
+.maninNavUlWrap {
+  min-width: 33.3%;
+  min-height: 200px;
+  padding: 10px;
+}
+.maninNavUlWrap li {
+  margin-top: 2px;
+}
+.maninNavUlWrap:nth-child(odd) {
+  background-color: var(--White);
+}
+.wrapper {
+  position: absolute;
+  top: 50px;
+  left: 226px;
+  background-color: var(--White);
+  width: calc(100vw - 235px);
+  height: 100vh;
+}
+/*Tables*/
+.jobs_tBody .rowData .col-auto {
+  max-width: 14%;
+}
+.table,
+.above {
+  max-width: 1000px;
+  margin: 20px auto;
+  color: #444;
+}
+.innerPageNav {
+  border: solid thin var(--LightGray);
+  border-radius: 5px;
+  max-width: 150px;
+  margin-left: auto;
+}
+.innerPageNav div {
+  width: 33.3%;
+  display: inline-block;
+  margin-top: 10px;
+  text-align: center;
+}
+.Header {
+  background-color: var(--LightBlue);
+  color: var(--White);
+  padding: 10px;
+  font-size: 12px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.Header .col-1:hover {
+  max-width: max-content;
+  overflow: visible;
+  position: absolute;
+  z-index: 999;
+  background-color: var(--BrightBlue);
+}
+.rowData {
+  background-color: var(--OffWhite);
+  padding: 10px;
+  border-top: solid thin var(--White);
+  cursor: pointer;
+}
+.rowData:last-of-type {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.Header > div,
+.rowData > div {
+  display: inline-block;
+  padding: 0 10px;
+  width: 100%;
+  overflow: hidden;
+}
+.rowData > div {
+  font-size: 12px;
+}
+.Header > div,
+.rowData > div,
+.rowData > div div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Table Toggle dropdown*/
+.tableToggleWrap {
+  max-width: 200px;
+  color: var(--SkyBlue);
+  background-color: var(--OffWhite) !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  opacity: 1;
+  border: 0;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-top: solid 2px var(--SkyBlue);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(0px);
+  transition: all 0.5s ease;
+}
+.tableToggleWrap .card-body li:nth-child(odd) {
+  border-bottom: solid 1px var(--LightGray);
+}
+.tableToggleWrap .card-body {
+  padding: 10px;
+}
+.tableToggleWrap .card-body li {
+  padding: 10px;
+  display: block;
+  font-size: 13px;
+  cursor: pointer;
+}
+.ec-menu-button {
+  height: 38px;
+  width: 40px;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer;
+  right: 34px;
+}
+.ec-menu-button div {
+  width: 26px;
+  height: 1px;
+  background-color: var(--White);
+  margin: 4px 0;
+  cursor: pointer;
+}
+/*Card*/
+.rowDataCardTable {
+  max-width: 100%;
+}
+.rowDataCard {
+  min-height: 200px;
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 5px;
+}
+.rowDataCardRowClick {
+  min-height: 200px;
+  display: inline-block;
+  background-color: var(--White);
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 5px;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  right: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  -webkit-transform: translateX(50%);
+  transform: translateX(-50%);
+  margin: auto;
+  z-index: 999;
+  max-width: 500px;
+}
+.rowDataCard > div {
+  max-width: 100% !important;
+}
+.closeCard {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  z-index: 9999;
+  background-color: var(--SkyBlue);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin: auto;
+  color: var(--White);
+  line-height: 1.9;
+  cursor: pointer;
+}
+.showContent {
+  overflow: visible !important;
+  max-width: 100% !important;
+  white-space: initial !important;
+}
+.editBtn {
+  display: none !important;
+}
+.rowDataCardRowClick .editBtn {
+  display: block !important;
+  position: fixed;
+  right: 0;
+  top: 0px;
+}
+.rowDataCardRowClick .editBtn:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+/*Graphs*/
+.graphs {
+  max-width: 80%;
+}
+.graphs .col-6 {
+  flex: 0 0 48%;
+  max-width: 48%;
+  background-color: var(--White);
+  margin: 5px auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+/*loader*/
+.loaderWrapper {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  z-index: 1070;
+  background-color: var(--DarkBlue);
+  border-radius: 50%;
+  bottom: 0;
+  border: solid 5px var(--OffWhite);
+  box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.24);
+}
+.loader {
+  position: absolute;
+  width: 75px;
+  height: 100px;
+  top: 11px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.loader__bar {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 50%;
+  background: var(--White);
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.loader__bar:nth-child(1) {
+  left: 0px;
+  -webkit-transform: scale(1, 0.2);
+  transform: scale(1, 0.2);
+  -webkit-animation: barUp1 4s infinite;
+  animation: barUp1 4s infinite;
+}
+.loader__bar:nth-child(2) {
+  left: 15px;
+  -webkit-transform: scale(1, 0.4);
+  transform: scale(1, 0.4);
+  -webkit-animation: barUp2 4s infinite;
+  animation: barUp2 4s infinite;
+}
+.loader__bar:nth-child(3) {
+  left: 30px;
+  -webkit-transform: scale(1, 0.6);
+  transform: scale(1, 0.6);
+  -webkit-animation: barUp3 4s infinite;
+  animation: barUp3 4s infinite;
+}
+.loader__bar:nth-child(4) {
+  left: 45px;
+  -webkit-transform: scale(1, 0.8);
+  transform: scale(1, 0.8);
+  -webkit-animation: barUp4 4s infinite;
+  animation: barUp4 4s infinite;
+}
+.loader__bar:nth-child(5) {
+  left: 60px;
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+  -webkit-animation: barUp5 4s infinite;
+  animation: barUp5 4s infinite;
+}
+.loadingText {
+  font-size: 12px;
+  position: absolute;
+  bottom: -39px;
+  color: var(--White);
+}
+.drop {
+  position: absolute;
+  right: 14px;
+}
+.dropToggle {
+  height: 34px !important;
+  overflow: hidden !important;
+  z-index: -1 !important;
+}
+.highlite a {
+  background-color: var(--DarkBlue);
+  margin: 1px 0 1px 16px;
+}
+.fixedCenter {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: auto;
+  max-width: 500px;
+  height: auto;
+  max-height: 500px;
+  background-color: var(--White);
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
