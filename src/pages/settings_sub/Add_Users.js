@@ -26,7 +26,7 @@ class AddUser extends Component {
             placeholder="Permission Type"
             className="form-control mb-2"
           />
-          <ButtonWrap save>Submit</ButtonWrap>
+          <ButtonWrap save>SAVE</ButtonWrap>
         </div>
       </div>
     );

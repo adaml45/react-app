@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "../components/Table";
 import AddUser from "./Add_Users";
@@ -9,32 +10,35 @@ const postsRow = [
   {
     id: 1,
     Project: "Project Name",
-    Agent: "Steve",
-    Type: "Admin"
+    User: "Steve",
+    Type: "Admin",
+    Status: "Active"
   },
   {
     id: 2,
     Project: "Project Name",
-    Agent: "Sam",
-    Type: "Read Only"
+    User: "Sam",
+    Type: "Read Only",
+    Status: "Active"
   },
   {
     id: 3,
     Project: "Project Name",
-    Agent: "Shawn",
-    Type: "Prime Contractor"
+    User: "Shawn",
+    Type: "Prime Contractor",
+    Status: "In-Active"
   }
 ];
 const postHead = [
   { title: "ID" },
   { title: "Project Name" },
-  { title: "Agent" },
+  { title: "User" },
   { title: "Permission Type" },
   { title: "Status" }
 ];
 function searchFilter(search) {
   return function(x) {
-    return x.Agent.toLowerCase().includes(search.toLowerCase()) || !search;
+    return x.User.toLowerCase().includes(search.toLowerCase()) || !search;
   };
 }
 
@@ -182,7 +186,13 @@ class Users extends Component {
 
           <Table
             Head={postHead.map(head => (
-              <div className="col-2" key={head.title}>
+              <div
+                className="col-2"
+                key={head.title}
+                style={{
+                  textAlign: head.title === "Status" ? "center" : "left"
+                }}
+              >
                 {head.title}
               </div>
             ))}
@@ -192,20 +202,7 @@ class Users extends Component {
                   <div>{row.id}</div>
                 </div>
                 <div className="col-2">
-                  <Link
-                    to={{
-                      pathname: "/Users_Edit",
-                      state: {
-                        id: row.id,
-                        project: row.Project,
-                        agent: row.Agent,
-                        type: row.Type
-                      }
-                    }}
-                    id={row.id}
-                  >
-                    <div>{row.Project}</div>
-                  </Link>
+                  <div>{row.Project}</div>
                 </div>
                 <div className="col-2">
                   <Link
@@ -214,16 +211,22 @@ class Users extends Component {
                       state: {
                         id: row.id,
                         project: row.Project,
-                        agent: row.Agent,
-                        type: row.Type
+                        user: row.User,
+                        type: row.Type,
+                        status: row.Status
                       }
                     }}
                   >
-                    <div>{row.Agent}</div>
+                    <div>{row.User}</div>
                   </Link>
                 </div>
                 <div className="col-2">
                   <div>{row.Type}</div>
+                </div>
+                <div className="col-2">
+                  <Status status={row.Status} className="status">
+                    {row.Status}
+                  </Status>
                 </div>
               </div>
             ))}
@@ -248,5 +251,10 @@ class Users extends Component {
     );
   }
 }
-
+export const Status = styled.div`
+  color: var(--White);
+  background-color: ${props =>
+    props.status === "Active" ? "#8BC34A" : "#F44336"};
+  text-align: center;
+`;
 export default Users;

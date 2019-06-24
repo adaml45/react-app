@@ -109,9 +109,8 @@ nav {
   font-size: 13px;
 }
 .navlink:hover,
-a:hover,
-.btn:hover {
-  color: var(--LightBlue);
+a:hover {
+  color: var(--BrightBlue) !important;
 }
 ul {
   margin: 0;
@@ -310,14 +309,11 @@ h5 {
   display: inline-block;
   padding: 0 10px;
   width: 100%;
-  overflow: hidden;
 }
 .rowData > div {
   font-size: 12px;
 }
-.Header > div,
-.rowData > div,
-.rowData > div div {
+.Header > div {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
