@@ -157,6 +157,7 @@ class Header extends Component {
     super(props);
     this.state = {
       condition: false,
+      mobileToggle: false,
       conditionMessage: false,
       conditionUser: false,
       dropped: false,
@@ -177,6 +178,11 @@ class Header extends Component {
     this.setState({ condition: false });
     this.setState({ conditionMessage: false });
     this.setState({ conditionUser: false });
+  };
+  toggleNav = () => {
+    this.setState({ mobileToggle: !this.state.mobileToggle });
+    var className = document.getElementById("wrapper");
+    className.classList.toggle("wrapperToggle");
   };
   toggleMessage = () => {
     this.setState({ conditionMessage: true });
@@ -485,7 +491,19 @@ class Header extends Component {
               </ul>
             </nav>
 
-            <div className="innerNav">
+            <div
+              className={
+                this.state.mobileToggle ? "innerNav toggleMobile" : "innerNav"
+              }
+            >
+              <div className="mobileToggle">
+                <FontAwesomeIcon
+                  icon="exchange-alt"
+                  size="lg"
+                  color="var(--BrightBlue)"
+                  onClick={this.toggleNav}
+                />
+              </div>
               <nav
                 className={
                   this.state.isActive === 0 ? " show" : "nav-link hide"
@@ -727,7 +745,9 @@ class Header extends Component {
               </nav>
             </div>
           </div>
-          <div className="logo">
+          <div
+            className={this.state.mobileToggle ? "logo toggleMobile" : "logo"}
+          >
             <img src={Logo} alt="Logo" width="120px" />
           </div>
           <div

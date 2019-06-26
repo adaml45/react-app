@@ -23,6 +23,12 @@ class AddUser extends Component {
           />
           <input
             type="text"
+            placeholder="User Email"
+            AddUser
+            className="form-control mb-2"
+          />
+          <input
+            type="text"
             placeholder="Permission Type"
             className="form-control mb-2"
           />

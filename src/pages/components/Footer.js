@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <FooterWrap className="footer">
-        <div className="row container-fluid">
+        <div className="row container">
           <div className="col-auto">
             <ButtonWrap type="button" className="btn  btn-sm">
               {this.props.Cancel}
@@ -32,6 +32,9 @@ export const FooterWrap = styled.div`
   span {
     text-transform: Uppercase;
     font-size: 13px;
+  }
+  & > div {
+    margin: auto;
   }
 `;
 export default Footer;

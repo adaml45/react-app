@@ -3,65 +3,66 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "../components/Table";
 import AddPermission from "./Add_Permission";
 import { Overlay } from "../components/Overlay";
+import Footer from "../components/Footer";
 
 const postsRow = [
   {
     id: 1,
     Type: "Admin",
-    Discription: "Add Type Discription Here"
+    Description: "Add Type Description Here"
   },
   {
     id: 8,
     Type: "Manager",
-    Discription: "Add Type Discription Here"
+    Description: "Add Type Description Here"
   },
   {
     id: 3,
     Type: "Client",
-    Discription: "Add Type Discription Here"
+    Description: "Add Type Description Here"
   },
   {
     id: 4,
     Type: "Client No Edit",
-    Discription: "No Edit"
+    Description: "No Edit"
   },
   {
     id: 9,
     Type: "PRG Employee",
-    Discription: "Add Type Discription Here"
+    Description: "Add Type Description Here"
   },
   {
     id: 11,
     Type: "Read Only",
-    Discription: "No Edit"
+    Description: "No Edit"
   },
   {
     id: 7,
     Type: "Full View",
-    Discription: "No Edit"
+    Description: "No Edit"
   },
   {
     id: 2,
     Type: "Accounting",
-    Discription: "Add Type Discription Here"
+    Description: "Add Type Description Here"
   },
   {
     id: 10,
     Type: "Prime Contractor",
-    Discription: "Add Type Discription Here"
+    Description: "Add Type Description Here"
   },
   {
     id: 5,
     Type: "Contractor",
-    Discription: "Add Type Discription Here"
+    Description: "Add Type Description Here"
   },
   {
     id: 6,
     Type: "Contractor View",
-    Discription: "No Dashboard"
+    Description: "No Dashboard"
   }
 ];
-const postHead = [{ title: "Type" }, { title: "Discription" }];
+const postHead = [{ title: "Type" }, { title: "Description" }];
 function searchFilter(search) {
   return function(x) {
     return x.Type.toLowerCase().includes(search.toLowerCase()) || !search;
@@ -78,7 +79,8 @@ class Permissions extends Component {
     showSearch: false,
     postsRow: postsRow,
     postHead: postHead,
-    search: ""
+    search: "",
+    Type: ""
   };
 
   toggleMenu = () => {
@@ -127,10 +129,38 @@ class Permissions extends Component {
       this.setState({ showRowFilter: false });
     });
   };
+  changeType(id, e) {
+    //const postsRow = Object.assign([], this.state.postsRow);
+    //postsRow.splice(index, 1);
+    //this.setState({ postsRow: postsRow });
+    const index = this.state.postsRow.findIndex(row => {
+      return row.id === id;
+    });
+    const row = Object.assign([], this.state.postsRow[index]);
+    row.Type = e.target.value;
+    const postsRow = Object.assign([], this.state.postsRow);
+    postsRow[index] = row;
+    this.setState({ postsRow: postsRow });
+    this.setState({ show: true });
+  }
+  changeDesc = (id, e) => {
+    const index = this.state.postsRow.findIndex(row => {
+      return row.id === id;
+    });
+    const row = Object.assign([], this.state.postsRow[index]);
+    row.Description = e.target.value;
+    const postsRow = Object.assign([], this.state.postsRow);
+    postsRow[index] = row;
+    this.setState({ postsRow: postsRow });
+    this.setState({ show: true });
+  };
+  cancelFooter = () => {
+    this.setState({ show: false });
+  };
   render() {
     const { postsRow, postHead, search } = this.state;
     return (
-      <div className="wrapper">
+      <div className="wrapper" id="wrapper">
         <div className="table-responsive">
           <div className="row container-fluid above">
             <div className="col-6 text-left pt-3">
@@ -213,17 +243,35 @@ class Permissions extends Component {
                 {head.title}
               </div>
             ))}
-            Body={postsRow.filter(searchFilter(search)).map(row => (
-              <div className="rowData  col-12" key={row.Type}>
+            Body={postsRow.filter(searchFilter(search)).map((row, index) => (
+              <div className="rowData  col-12" key={row.id}>
                 <div className="col-2">
-                  <div>{row.Type}</div>
+                  <input
+                    id={row.id}
+                    type="text"
+                    value={row.Type}
+                    className="form-control form-control-sm"
+                    onChange={this.changeType.bind(this, row.id)}
+                  />
                 </div>
                 <div className="col-10">
-                  <div>{row.Discription}</div>
+                  <input
+                    id={row.id}
+                    type="text"
+                    value={row.Description}
+                    className="form-control form-control-sm"
+                    onChange={this.changeDesc.bind(this, row.id)}
+                  />
                 </div>
               </div>
             ))}
           />
+          <div className={this.state.show ? "show" : "hide"}>
+            <Footer
+              Cancel={<span onClick={this.cancelFooter}> Cancel</span>}
+              Save={<span> Save</span>}
+            />
+          </div>
         </div>
         <div className={this.state.showAddAgent ? "show" : "hide"}>
           <AddPermission

@@ -17,6 +17,8 @@ import { faSortAlphaDown } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
 
@@ -49,4 +51,7 @@ library.add(faSortAlphaDown);
 library.add(faEdit);
 library.add(faAngleDown);
 library.add(faPlus);
+library.add(faAngleLeft);
+library.add(faExchangeAlt);
+
 export default App;

@@ -11,6 +11,7 @@ const postsRow = [
     id: 1,
     Project: "Project Name",
     User: "Steve",
+    Email: "steve@email.com",
     Type: "Admin",
     Status: "Active"
   },
@@ -18,6 +19,7 @@ const postsRow = [
     id: 2,
     Project: "Project Name",
     User: "Sam",
+    Email: "sam@email.com",
     Type: "Read Only",
     Status: "Active"
   },
@@ -25,6 +27,7 @@ const postsRow = [
     id: 3,
     Project: "Project Name",
     User: "Shawn",
+    Email: "shawn@email.com",
     Type: "Prime Contractor",
     Status: "In-Active"
   }
@@ -33,6 +36,7 @@ const postHead = [
   { title: "ID" },
   { title: "Project Name" },
   { title: "User" },
+  { title: "Email" },
   { title: "Permission Type" },
   { title: "Status" }
 ];
@@ -43,20 +47,18 @@ function searchFilter(search) {
 }
 
 class Users extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      condition: false,
-      overlay: false,
-      showAddAgent: false,
-      showRowCondition: false,
-      showRowFilter: false,
-      showSearch: false,
-      postsRow: postsRow,
-      postHead: postHead,
-      search: ""
-    };
-  }
+  state = {
+    condition: false,
+    overlay: false,
+    showAddAgent: false,
+    showRowCondition: false,
+    showRowFilter: false,
+    showSearch: false,
+    postsRow: postsRow,
+    postHead: postHead,
+    search: ""
+  };
+
   toggleMenu = () => {
     this.setState({ condition: true });
     this.setState({ showRowFilter: true });
@@ -107,7 +109,7 @@ class Users extends Component {
   render() {
     const { postsRow, postHead, search } = this.state;
     return (
-      <div className="wrapper">
+      <div className="wrapper" id="wrapper">
         <div className="table-responsive">
           <div className="row container-fluid above">
             <div className="col-6 text-left pt-3">
@@ -187,7 +189,7 @@ class Users extends Component {
           <Table
             Head={postHead.map(head => (
               <div
-                className="col-2"
+                className={head.title === "ID" ? "col-1" : "col-2"}
                 key={head.title}
                 style={{
                   textAlign: head.title === "Status" ? "center" : "left"
@@ -197,38 +199,42 @@ class Users extends Component {
               </div>
             ))}
             Body={postsRow.filter(searchFilter(search)).map(row => (
-              <div className="rowData  col-12" key={row.id} id={row.id}>
-                <div className="col-2">
-                  <div>{row.id}</div>
-                </div>
-                <div className="col-2">
-                  <div>{row.Project}</div>
-                </div>
-                <div className="col-2">
-                  <Link
-                    to={{
-                      pathname: "/Users_Edit",
-                      state: {
-                        id: row.id,
-                        project: row.Project,
-                        user: row.User,
-                        type: row.Type,
-                        status: row.Status
-                      }
-                    }}
-                  >
+              <Link
+                to={{
+                  pathname: "/Users_Edit",
+                  state: {
+                    id: row.id,
+                    project: row.Project,
+                    user: row.User,
+                    email: row.Email,
+                    type: row.Type,
+                    status: row.Status
+                  }
+                }}
+              >
+                <div className="rowData  col-12" key={row.id} id={row.id}>
+                  <div className="col-1">
+                    <div>{row.id}</div>
+                  </div>
+                  <div className="col-2">
+                    <div>{row.Project}</div>
+                  </div>
+                  <div className="col-2">
                     <div>{row.User}</div>
-                  </Link>
+                  </div>
+                  <div className="col-2">
+                    <div>{row.Email}</div>
+                  </div>
+                  <div className="col-2">
+                    <div>{row.Type}</div>
+                  </div>
+                  <div className="col-2">
+                    <Status status={row.Status} className="status">
+                      {row.Status}
+                    </Status>
+                  </div>
                 </div>
-                <div className="col-2">
-                  <div>{row.Type}</div>
-                </div>
-                <div className="col-2">
-                  <Status status={row.Status} className="status">
-                    {row.Status}
-                  </Status>
-                </div>
-              </div>
+              </Link>
             ))}
           />
         </div>

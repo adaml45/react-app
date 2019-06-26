@@ -58,6 +58,22 @@ header.bg-light {
 nav {
   transition: transform 0.5s ease;
 }
+.mobileToggle {
+  position: absolute;
+  right: -26px;
+  top: 0px;
+  display: none;
+  background-color: var(--BrightBlue);
+  width: 26px !important;
+  height: 26px;
+  text-align: center;
+  border-radius: 0 5px 5px 0;
+  color: var(--White);
+}
+.mobileToggle svg {
+  color: var(--White);
+  width: 12px !important;
+}
 .navbar-light .nav {
   height: auto;
   overflow: visible;
@@ -102,6 +118,7 @@ nav {
   top: -1px;
   height: 50px;
   min-width: 200px;
+  background-color: var(--White) !important;
 }
 .nav-link {
   color: var(--LightBlue);
@@ -115,6 +132,9 @@ a:hover {
 ul {
   margin: 0;
   padding: 0;
+}
+.form-control-sm {
+  font-size: 12px;
 }
 li {
   list-style: none;
@@ -131,6 +151,9 @@ svg {
 }
 h5 {
   text-transform: uppercase;
+}
+.form-control {
+  background-color: transparent;
 }
 .overflow {
   overflow: hidden !important;
@@ -217,6 +240,7 @@ h5 {
   width: 225px;
   height: 100vh;
   background-color: var(--LightBlue);
+  transition: all 0.5s ease;
 }
 .innerNav nav {
   width: 100%;
@@ -256,6 +280,8 @@ h5 {
   background-color: var(--White);
   width: calc(100vw - 235px);
   height: 100vh;
+  margin-bottom: 70px;
+  transition: all 0.5s ease;
 }
 /*Tables*/
 .jobs_tBody .rowData .col-auto {
@@ -286,13 +312,6 @@ h5 {
   font-size: 12px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-}
-.Header .col-1:hover {
-  max-width: max-content;
-  overflow: visible;
-  position: absolute;
-  z-index: 999;
-  background-color: var(--BrightBlue);
 }
 .rowData {
   background-color: var(--OffWhite);
@@ -443,83 +462,6 @@ h5 {
   margin: 5px auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-/*loader*/
-.loaderWrapper {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  right: 0;
-  margin: auto;
-  text-align: center;
-  width: 200px;
-  height: 200px;
-  z-index: 1070;
-  background-color: var(--DarkBlue);
-  border-radius: 50%;
-  bottom: 0;
-  border: solid 5px var(--OffWhite);
-  box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.24);
-}
-.loader {
-  position: absolute;
-  width: 75px;
-  height: 100px;
-  top: 11px;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-.loader__bar {
-  position: absolute;
-  bottom: 0;
-  width: 10px;
-  height: 50%;
-  background: var(--White);
-  -webkit-transform-origin: center bottom;
-  transform-origin: center bottom;
-  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-}
-.loader__bar:nth-child(1) {
-  left: 0px;
-  -webkit-transform: scale(1, 0.2);
-  transform: scale(1, 0.2);
-  -webkit-animation: barUp1 4s infinite;
-  animation: barUp1 4s infinite;
-}
-.loader__bar:nth-child(2) {
-  left: 15px;
-  -webkit-transform: scale(1, 0.4);
-  transform: scale(1, 0.4);
-  -webkit-animation: barUp2 4s infinite;
-  animation: barUp2 4s infinite;
-}
-.loader__bar:nth-child(3) {
-  left: 30px;
-  -webkit-transform: scale(1, 0.6);
-  transform: scale(1, 0.6);
-  -webkit-animation: barUp3 4s infinite;
-  animation: barUp3 4s infinite;
-}
-.loader__bar:nth-child(4) {
-  left: 45px;
-  -webkit-transform: scale(1, 0.8);
-  transform: scale(1, 0.8);
-  -webkit-animation: barUp4 4s infinite;
-  animation: barUp4 4s infinite;
-}
-.loader__bar:nth-child(5) {
-  left: 60px;
-  -webkit-transform: scale(1, 1);
-  transform: scale(1, 1);
-  -webkit-animation: barUp5 4s infinite;
-  animation: barUp5 4s infinite;
-}
-.loadingText {
-  font-size: 12px;
-  position: absolute;
-  bottom: -39px;
-  color: var(--White);
-}
 .drop {
   position: absolute;
   right: 14px;
@@ -546,4 +488,28 @@ h5 {
   background-color: var(--White);
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1167px) {
+  .fixed-top {
+    max-width: 70%;
+  }
+}
+@media (max-width: 900px) {
+  .mobileToggle {
+    display: inline-block;
+  }
+  .toggleMobile {
+    transform: translateX(-225px);
+    transition: all 0.5s ease;
+  }
+  .wrapperToggle {
+    width: calc(100vw - 51px);
+    margin: auto;
+    padding-left: 20px;
+    left: 0;
+  }
+  .fixed-top {
+    max-width: 100%;
+  }
 }

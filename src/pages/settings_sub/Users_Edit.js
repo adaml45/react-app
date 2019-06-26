@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Table from "../components/Table";
 import Select from "../components/Select";
 import Footer from "../components/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const postStatus = [{ title: "Active" }, { title: "In-Active" }];
 const postType = [
@@ -56,10 +57,11 @@ class UserEdit extends Component {
     const Agent = props => {
       let i = this.props.location.state.id;
       let u = this.props.location.state.user;
+      let e = this.props.location.state.email;
       let p = this.props.location.state.project;
       let t = this.props.location.state.type;
       let s = this.props.location.state.status;
-      this.setState({ i, u, t, p, s });
+      this.setState({ i, u, t, p, s, e });
     };
     Agent();
   }
@@ -76,19 +78,37 @@ class UserEdit extends Component {
   cancelFooter = () => {
     this.setState({ show: false });
   };
+  changeName = e => {
+    this.setState({ u: e.target.u });
+    this.setState({ show: true });
+  };
+  changeEmail = e => {
+    this.setState({ e: e.target.e });
+    this.setState({ show: true });
+  };
   render() {
-    const { i, u, t, p, s, postStatus, postType } = this.state;
+    const { i, u, t, p, s, e, postStatus, postType } = this.state;
     return (
-      <div className="wrapper">
+      <div className="wrapper" id="wrapper">
         <div className="row container-fluid above">
           <div className="col-6 text-left pt-3">
-            <Link to={"/Users"}>Back</Link>
+            <Link to={"/Users"}>
+              <FontAwesomeIcon
+                className="mr-2"
+                icon="angle-left"
+                size="lg"
+                color="var(--BrightBlue)"
+                onMouseEnter={this.showRowCard}
+              />
+              Back
+            </Link>
           </div>
         </div>
         <Table
           Head={
             <React.Fragment>
               <div className="col-2">User</div>
+              <div className="col-2">Email</div>
               <div className="col-2">Project</div>
               <div className="col-2">Type</div>
               <div className="col-2">Status</div>
@@ -97,13 +117,27 @@ class UserEdit extends Component {
           Body={
             <div className="rowData  col-12" id={i}>
               <div className="col-2">
-                <div>{u}</div>
+                <input
+                  type="text "
+                  value={u}
+                  className="form-control form-control-sm"
+                  onChange={this.changeName}
+                />
+              </div>
+              <div className="col-2">
+                <input
+                  type="text "
+                  value={e}
+                  className="form-control form-control-sm"
+                  onChange={this.changeEmail}
+                />
               </div>
               <div className="col-2">
                 <div>{p}</div>
               </div>
               <div className="col-2">
                 <Select
+                  status={t}
                   selectStatus={
                     this.state.selectType ? this.state.selectType : t
                   }

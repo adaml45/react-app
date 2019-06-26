@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { ButtonWrap } from "./Buttons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class Select extends Component {
   state = {
     show: false
@@ -22,6 +24,7 @@ class Select extends Component {
           >
             {this.props.selectStatus}
           </ButtonWrap>
+          <FontAwesomeIcon icon="angle-down" color="#6199b4" size="1x" />
           <div
             className={
               this.state.show === true
