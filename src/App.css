@@ -1,0 +1,530 @@
+:root {
+  --White: #ffffff;
+  --OffWhite: #f5f5f5;
+  --LightBlue: #495971;
+  --BrightBlue: #6099b4;
+  --SkyBlue: #607d8b;
+  --DarkBlue: #3d495a;
+  --Black: #000000;
+  --Overlay: #0000003b;
+  --LightGray: #ddd;
+  --DarkGray: #444;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  z-index: 9;
+}
+header.bg-light {
+  background-color: var(--LightBlue) !important;
+}
+.logo {
+  position: fixed;
+  bottom: 7px;
+  left: 0;
+  width: 100%;
+  background-color: var(--White);
+  max-width: 216px;
+  text-align: center;
+}
+.fixed-top {
+  top: 50px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  max-width: 50%;
+  opacity: 1;
+  transform: translateY(0px);
+  border-top: solid 2px var(--SkyBlue);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.toggled {
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  z-index: -1 !important;
+  transform: translateY(20px) !important;
+}
+nav {
+  transition: transform 0.5s ease;
+}
+.mobileToggle {
+  position: absolute;
+  right: -26px;
+  top: 0px;
+  display: none;
+  background-color: var(--BrightBlue);
+  width: 26px !important;
+  height: 26px;
+  text-align: center;
+  border-radius: 0 5px 5px 0;
+  color: var(--White);
+}
+.mobileToggle svg {
+  color: var(--White);
+  width: 12px !important;
+}
+.navbar-light .nav {
+  height: auto;
+  overflow: visible;
+}
+.mainTopNav {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: 100%;
+  max-width: 250px;
+  height: 41px;
+  color: var(--White);
+  border: solid thin var(--LightGray);
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+}
+.mainTopNav li {
+  display: inline-block;
+  width: 50%;
+  font-size: 13px;
+  position: relative;
+  cursor: pointer;
+}
+.tableToggleWrap.messageBox {
+  top: 25px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  right: 0;
+  margin: auto;
+}
+.tableToggleWrap.messageBox li {
+  width: 100%;
+}
+.filter.tableToggleWrap {
+  right: 30px;
+}
+.filterInput {
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  height: 50px;
+  min-width: 200px;
+  background-color: var(--White) !important;
+}
+.nav-link {
+  color: var(--LightBlue);
+  padding: 4px 1rem;
+  font-size: 13px;
+}
+.navlink:hover,
+a:hover {
+  color: var(--BrightBlue) !important;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+.form-control-sm {
+  font-size: 12px;
+}
+li {
+  list-style: none;
+  line-height: 1;
+}
+a {
+  color: var(--BrightBlue);
+}
+.highlite div div {
+  color: var(--SkyBlue);
+}
+svg {
+  cursor: pointer;
+}
+h5 {
+  text-transform: uppercase;
+}
+.form-control {
+  background-color: transparent;
+  border: solid thin var(--OffWhite);
+  cursor: pointer;
+}
+.form-control:hover {
+  border: solid thin #ced4da;
+}
+.overflow {
+  overflow: hidden !important;
+}
+.line {
+  width: 70%;
+  position: relative;
+  top: -2px;
+  right: -6px;
+}
+.menuToggle {
+  position: relative;
+  top: 0;
+  left: -6px;
+  z-index: 3;
+  width: 231px;
+  color: var(--White);
+  background-color: var(--BrightBlue);
+  height: 50px;
+  padding-right: 33px;
+  border-radius: 0;
+}
+.menuToggle .line {
+  position: absolute;
+  right: 0;
+  top: 39px;
+}
+.menuToggle .line:after {
+  border-color: var(--BrightBlue) transparent;
+}
+.line:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 7px 0;
+  border-color: var(--LightBlue) transparent;
+  display: block;
+  width: 2px;
+  z-index: 1;
+  top: 8px;
+  left: 45%;
+}
+.line:before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 7px 0;
+  border-color: var(--BrightBlue) transparent;
+  display: block;
+  width: 2px;
+  z-index: 1;
+  top: 9px;
+  left: 45%;
+}
+.active {
+  color: var(--BrightBlue) !important;
+  transition: all 0.5s ease;
+  background-color: var(--OffWhite);
+  border-left: solid 2px var(--SkyBlue);
+  margin-left: 5px;
+}
+.innerNav .active {
+  background-color: var(--DarkBlue);
+}
+.topLi {
+  background-color: transparent;
+  padding-left: 10px;
+  color: var(--BrightBlue);
+  border-left: solid 0 transparent;
+  margin-left: 0;
+  font-weight: bold;
+}
+.show {
+  display: inline-block;
+}
+.hide,
+.highlite span,
+.PermissionsDrop span {
+  display: none !important;
+}
+.innerNav {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 225px;
+  height: 100vh;
+  background-color: var(--LightBlue);
+  transition: all 0.5s ease;
+}
+.innerNav nav {
+  width: 100%;
+  max-width: 100%;
+}
+.innerNav li {
+  display: block;
+  width: 100%;
+  line-height: 2;
+}
+.innerNav .nav-link {
+  color: var(--White);
+}
+.innerNavName {
+  text-transform: uppercase;
+  text-align: left;
+  margin: 10px 0 0 0;
+}
+.innerNavName a {
+  color: var(--Black);
+}
+.maninNavUlWrap {
+  min-width: 33.3%;
+  min-height: 200px;
+  padding: 10px 0;
+}
+.maninNavUlWrap li {
+  margin-top: 2px;
+}
+.maninNavUlWrap:nth-child(odd) {
+  background-color: var(--White);
+}
+.wrapper {
+  position: absolute;
+  top: 50px;
+  left: 226px;
+  background-color: var(--White);
+  width: calc(100vw - 235px);
+  height: 100vh;
+  margin-bottom: 70px;
+  transition: all 0.5s ease;
+}
+/*Tables*/
+.jobs_tBody .rowData .col-auto {
+  max-width: 14%;
+}
+.table,
+.above {
+  max-width: 1000px;
+  margin: 20px auto;
+  color: #444;
+}
+.innerPageNav {
+  border: solid thin var(--LightGray);
+  border-radius: 5px;
+  max-width: 150px;
+  margin-left: auto;
+}
+.innerPageNav div {
+  width: 33.3%;
+  display: inline-block;
+  margin-top: 10px;
+  text-align: center;
+}
+.Header {
+  background-color: var(--LightBlue);
+  color: var(--White);
+  padding: 10px;
+  font-size: 12px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.rowData {
+  background-color: var(--OffWhite);
+  padding: 2px 10px 2px 10px;
+  border-top: solid thin var(--White);
+  cursor: pointer;
+}
+.rowData:last-of-type {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.Header > div,
+.rowData > div {
+  display: inline-block;
+  padding: 0 10px;
+  width: 100%;
+}
+.rowData > div {
+  font-size: 12px;
+}
+.Header > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Table Toggle dropdown*/
+.tableToggleWrap {
+  max-width: 200px;
+  color: var(--SkyBlue);
+  background-color: var(--OffWhite) !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  opacity: 1;
+  border: 0;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-top: solid 2px var(--SkyBlue);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(0px);
+  transition: all 0.5s ease;
+}
+.tableToggleWrap .card-body li:nth-child(odd) {
+  border-bottom: solid 1px var(--LightGray);
+}
+.tableToggleWrap .card-body {
+  padding: 10px;
+}
+.tableToggleWrap .card-body li {
+  padding: 10px;
+  display: block;
+  font-size: 13px;
+  cursor: pointer;
+}
+.ec-menu-button {
+  height: 38px;
+  width: 40px;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer;
+  right: 34px;
+}
+.ec-menu-button div {
+  width: 26px;
+  height: 1px;
+  background-color: var(--White);
+  margin: 4px 0;
+  cursor: pointer;
+}
+/*Card*/
+.rowDataCardTable {
+  max-width: 100%;
+}
+.rowDataCard {
+  min-height: 200px;
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 5px;
+}
+.rowDataCardRowClick {
+  min-height: 200px;
+  display: inline-block;
+  background-color: var(--White);
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 5px;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  right: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  -webkit-transform: translateX(50%);
+  transform: translateX(-50%);
+  margin: auto;
+  z-index: 999;
+  max-width: 500px;
+}
+.rowDataCard > div {
+  max-width: 100% !important;
+}
+.closeCard {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  z-index: 9999;
+  background-color: var(--SkyBlue);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin: auto;
+  color: var(--White);
+  line-height: 1.9;
+  cursor: pointer;
+}
+.showContent {
+  overflow: visible !important;
+  max-width: 100% !important;
+  white-space: initial !important;
+}
+.editBtn {
+  display: none !important;
+}
+.rowDataCardRowClick .editBtn {
+  display: block !important;
+  position: fixed;
+  right: 0;
+  top: 0px;
+}
+.rowDataCardRowClick .editBtn:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+/*Graphs*/
+.graphs {
+  max-width: 80%;
+}
+.graphs .col-6 {
+  flex: 0 0 48%;
+  max-width: 48%;
+  background-color: var(--White);
+  margin: 5px auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.drop {
+  position: absolute;
+  right: 14px;
+}
+.dropToggle {
+  height: 34px !important;
+  overflow: hidden !important;
+  z-index: -1 !important;
+}
+.highlite a {
+  background-color: var(--DarkBlue);
+  margin: 1px 0 1px 16px;
+}
+.fixedCenter {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: auto;
+  max-width: 500px;
+  height: auto;
+  max-height: 500px;
+  background-color: var(--White);
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1167px) {
+  .fixed-top {
+    max-width: 70%;
+  }
+}
+@media (max-width: 900px) {
+  .mobileToggle {
+    display: inline-block;
+  }
+  .toggleMobile {
+    transform: translateX(-225px);
+    transition: all 0.5s ease;
+  }
+  .wrapper {
+    width: calc(100vw - 51px);
+    margin: auto;
+    padding-left: 20px;
+    left: 0;
+  }
+  .fixed-top {
+    max-width: 100%;
+  }
+  .footer {
+    left: 0;
+    width: calc(100vw - 0px) !important;
+  }
+}
+@media (max-width: 535px) {
+  .maninNavUlWrap {
+    min-width: 100%;
+  }
+}
