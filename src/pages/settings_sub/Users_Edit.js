@@ -47,6 +47,7 @@ class UserEdit extends Component {
   state = {
     active: false,
     show: false,
+    Succsaved: false,
     postStatus: postStatus,
     postType: postType,
     selectType: "",
@@ -85,6 +86,17 @@ class UserEdit extends Component {
   changeEmail = e => {
     this.setState({ e: e.target.e });
     this.setState({ show: true });
+  };
+  saveClick = () => {
+    this.setState({ Succsaved: true });
+    setTimeout(() => {
+      this.setState({
+        Succsaved: false
+      });
+      this.setState({
+        show: false
+      });
+    }, 3000);
   };
   render() {
     const { i, u, t, p, s, e, postStatus, postType } = this.state;
@@ -187,8 +199,11 @@ class UserEdit extends Component {
         />
         <div className={this.state.show ? "show" : "hide"}>
           <Footer
+            sucessfulSaveFooterColor={this.state.Succsaved ? "greenBgd" : ""}
+            sucessfulSave={this.state.Succsaved ? "show" : "hide"}
+            footerBtns={this.state.Succsaved ? "hide" : "show"}
             Cancel={<span onClick={this.cancelFooter}> Cancel</span>}
-            Save={<span> Save</span>}
+            Save={<span onClick={this.saveClick}> Save</span>}
           />
         </div>
       </div>

@@ -157,6 +157,17 @@ class Permissions extends Component {
   cancelFooter = () => {
     this.setState({ show: false });
   };
+  saveClick = () => {
+    this.setState({ Succsaved: true });
+    setTimeout(() => {
+      this.setState({
+        Succsaved: false
+      });
+      this.setState({
+        show: false
+      });
+    }, 3000);
+  };
   render() {
     const { postsRow, postHead, search } = this.state;
     return (
@@ -268,8 +279,11 @@ class Permissions extends Component {
           />
           <div className={this.state.show ? "show" : "hide"}>
             <Footer
+              sucessfulSaveFooterColor={this.state.Succsaved ? "greenBgd" : ""}
+              sucessfulSave={this.state.Succsaved ? "show" : "hide"}
+              footerBtns={this.state.Succsaved ? "hide" : "show"}
               Cancel={<span onClick={this.cancelFooter}> Cancel</span>}
-              Save={<span> Save</span>}
+              Save={<span onClick={this.saveClick}> Save</span>}
             />
           </div>
         </div>

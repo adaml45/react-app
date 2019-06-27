@@ -29,11 +29,8 @@ const LoaderWrapper = styled.div`
   width: 200px;
   height: 200px;
   z-index: 1070;
-  background-color: var(--DarkBlue);
   border-radius: 50%;
   bottom: 0;
-  border: solid 5px var(--OffWhite);
-  box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.24);
   .loader {
     position: absolute;
     width: 75px;
@@ -48,7 +45,7 @@ const LoaderWrapper = styled.div`
     bottom: 0;
     width: 10px;
     height: 50%;
-    background: var(--White);
+    background: var(--LightGray);
     -webkit-transform-origin: center bottom;
     transform-origin: center bottom;
     box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
@@ -92,7 +89,7 @@ const LoaderWrapper = styled.div`
     font-size: 12px;
     position: absolute;
     bottom: -39px;
-    color: var(--White);
+    color: var(--LightGray);
   }
 `;
 

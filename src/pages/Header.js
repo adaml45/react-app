@@ -174,6 +174,9 @@ class Header extends Component {
   toggleMenu = () => {
     this.setState({ condition: true });
   };
+  toggleMenuOpenClose = () => {
+    this.setState({ condition: !this.state.condition });
+  };
   toggleMenu2 = () => {
     this.setState({ condition: false });
     this.setState({ conditionMessage: false });
@@ -181,8 +184,6 @@ class Header extends Component {
   };
   toggleNav = () => {
     this.setState({ mobileToggle: !this.state.mobileToggle });
-    var className = document.getElementById("wrapper");
-    className.classList.toggle("wrapperToggle");
   };
   toggleMessage = () => {
     this.setState({ conditionMessage: true });
@@ -195,6 +196,7 @@ class Header extends Component {
   LiItemClick = (index, e) => {
     this.setState({ activeItem: index });
     this.setState({ NavText: e.target.id });
+    this.setState({ mobileToggle: !this.state.mobileToggle });
   };
   active = index => {
     this.setState({ isActive: index });
@@ -255,6 +257,7 @@ class Header extends Component {
                   type="button"
                   className="btn menuToggle"
                   onMouseEnter={this.toggleMenu}
+                  onClick={this.toggleMenuOpenClose}
                 >
                   {this.state.NavText}
                   <div className="ec-menu-button">
