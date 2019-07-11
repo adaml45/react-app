@@ -4,7 +4,8 @@ export const liSettings = [
     id: "Jobs",
     class: "jobsDrop",
     name: "Jobs",
-    url: "Job_Settings"
+    url: "Job_Settings",
+    linkOut: "false"
   },
 
   {
@@ -53,7 +54,8 @@ export const liSettings = [
     id: "Permits",
     class: "PermitsDrop",
     name: "Permits",
-    url: "Permits_Settings"
+    url: "Permits_Settings",
+    linkOut: "false"
   },
   {
     index: 8.1,
@@ -74,16 +76,26 @@ export const liSettings = [
   {
     index: 9,
     id: "Gigs",
-    class: "PermissionsDrop ",
+    class: "GigsDrop",
     name: "Gigs",
-    url: "/Gigs_Settings"
+    url: "Gigs_Settings",
+    linkOut: "false"
+  },
+  {
+    index: 9.1,
+    id: "Gigs",
+    class: "GigsDrop highlite",
+    name: "Gigs Type",
+    url: "/Gig_Type",
+    show: "false"
   },
   {
     index: 10,
     id: "Materials",
     class: "MaterialsDrop",
     name: "Materials",
-    url: "/Materials_Settings"
+    url: "Materials_Settings",
+    linkOut: "false"
   },
   {
     index: 10.1,
@@ -122,14 +134,15 @@ export const liSettings = [
     id: "Contractors",
     class: "ContractorsDrop",
     name: "Contractors",
-    url: "/Contractor_Settings"
+    url: "Contractor_Settings",
+    linkOut: "false"
   },
   {
     index: 11.1,
     id: "Contractors",
     class: "ContractorsDrop highlite",
     name: "Prime Contractor",
-    url: "Prime_Contractor",
+    url: "Prime_Contractors",
     show: "false"
   },
   {
@@ -137,30 +150,48 @@ export const liSettings = [
     id: "Contractors",
     class: "ContractorsDrop highlite",
     name: "Subcontractor",
-    url: "Subcontractor",
+    url: "Subcontractors",
     show: "false"
   },
   {
     index: 11.3,
     id: "Contractors",
     class: "ContractorsDrop highlite",
-    name: "Crew",
-    url: "Crew",
+    name: "Crews",
+    url: "Crews",
     show: "false"
   },
   {
     index: 13,
     id: "Passings",
-    class: "PermissionsDrop ",
+    class: "PassingsDrop ",
     name: "Passings",
-    url: "/Passings_Settings"
+    url: "Passings_Settings",
+    linkOut: "false"
+  },
+  {
+    index: 13.1,
+    id: "Passings",
+    class: "PassingsDrop highlite",
+    name: "Building Types",
+    url: "/Building_Types",
+    show: "false"
   },
   {
     index: 14,
     id: "Activities",
-    class: "PermissionsDrop",
+    class: "ActivitiesDrop",
     name: "Activities",
-    url: "/Activities_Settings"
+    url: "Activities_Settings",
+    linkOut: "false"
+  },
+  {
+    index: 14.1,
+    id: "Activities",
+    class: "ActivitiesDrop highlite",
+    name: "Activity Settings",
+    url: "/Activity_Settings",
+    show: "false"
   },
   {
     index: 15,

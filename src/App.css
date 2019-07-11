@@ -5,6 +5,7 @@
   --BrightBlue: #6099b4;
   --SkyBlue: #607d8b;
   --DarkBlue: #3d495a;
+  --ReallyDarkBlue: #323e4e;
   --Black: #000000;
   --Overlay: #0000003b;
   --LightGray: #ddd;
@@ -125,9 +126,14 @@ nav {
   padding: 4px 1rem;
   font-size: 13px;
 }
+p.nav-link {
+  margin-bottom: 0;
+}
 .navlink:hover,
-a:hover {
+a:hover,
+p.nav-link:hover {
   color: var(--BrightBlue) !important;
+  cursor: pointer;
 }
 ul {
   margin: 0;
@@ -138,10 +144,13 @@ ul {
 }
 li {
   list-style: none;
-  line-height: 1;
+  line-height: 2;
+}
+label {
+  font-size: 13px;
 }
 a {
-  color: var(--BrightBlue);
+  color: var(--DarkBlue);
 }
 .highlite div div {
   color: var(--SkyBlue);
@@ -159,6 +168,9 @@ h5 {
 }
 .form-control:hover {
   border: solid thin #ced4da;
+}
+textarea.form-control {
+  margin-top: 5px;
 }
 .overflow {
   overflow: hidden !important;
@@ -223,6 +235,10 @@ h5 {
 .innerNav .active {
   background-color: var(--DarkBlue);
 }
+.activeWrap {
+  width: 225px;
+  background-color: var(--ReallyDarkBlue);
+}
 .topLi {
   background-color: transparent;
   padding-left: 10px;
@@ -253,6 +269,7 @@ h5 {
   max-width: 100%;
 }
 .innerNav li {
+  position: relative;
   display: block;
   width: 100%;
   line-height: 2;
@@ -283,21 +300,44 @@ h5 {
   position: absolute;
   top: 50px;
   left: 226px;
+  background-color: #ffffff;
   background-color: var(--White);
-  width: calc(100vw - 235px);
-  height: 100vh;
+  width: auto;
+  height: auto;
   margin-bottom: 70px;
+  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  max-width: 1000px;
+  margin: 0 auto 50px;
+  right: 0;
+  overflow-x: hidden;
 }
 /*Tables*/
 .jobs_tBody .rowData .col-auto {
   max-width: 14%;
 }
-.table,
 .above {
   max-width: 1000px;
   margin: 20px auto;
   color: #444;
+}
+.table-responsive {
+  overflow-y: overlay;
+  height: 400px;
+  max-height: 700px;
+}
+.table.row {
+  position: relative;
+  height: auto;
+  margin: 0;
+  max-width: 1000px;
+}
+.table.row .col-12.p-0 {
+  position: relative;
+  top: 45px;
+  z-index: 1;
+  max-width: 1000px;
+  padding-bottom: 45px !important;
 }
 .innerPageNav {
   border: solid thin var(--LightGray);
@@ -318,6 +358,8 @@ h5 {
   font-size: 12px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  position: absolute;
+  z-index: 2;
 }
 .rowData {
   background-color: var(--OffWhite);
@@ -337,6 +379,37 @@ h5 {
 }
 .rowData > div {
   font-size: 12px;
+}
+.rowData:hover {
+  background-color: var(--LightGray);
+}
+.rowDataWithOverflow {
+  overflow-x: hidden;
+  white-space: nowrap;
+  overflow-y: hidden;
+  vertical-align: middle;
+  padding: 3px 10px 0;
+}
+.rowDataWithOverflow:hover {
+  overflow-x: auto;
+}
+.table-responsive::-webkit-scrollbar,
+.rowDataWithOverflow::-webkit-scrollbar {
+  width: 0.1px !important;
+  height: 7px;
+}
+.table-responsive::-webkit-scrollbar-track,
+.rowDataWithOverflow::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.table-responsive::-webkit-scrollbar-thumb,
+.rowDataWithOverflow::-webkit-scrollbar-thumb {
+  background: var(--BrightBlue) !important;
+  border-radius: 5px;
+}
+.form-control::placeholder {
+  color: var(--LightGray);
+  opacity: 1;
 }
 .Header > div {
   overflow: hidden;
@@ -427,11 +500,11 @@ h5 {
 }
 .closeCard {
   position: absolute;
-  top: 2px;
-  right: 3px;
+  top: 0;
+  right: 0;
   z-index: 9999;
   background-color: var(--SkyBlue);
-  border-radius: 50%;
+  border-radius: 0 5px 0 0;
   width: 30px;
   height: 30px;
   text-align: center;
@@ -470,12 +543,16 @@ h5 {
 }
 .drop {
   position: absolute;
+  top: 1px;
   right: 14px;
 }
 .dropToggle {
   height: 34px !important;
   overflow: hidden !important;
   z-index: -1 !important;
+}
+.up {
+  transform: rotate(180deg);
 }
 .highlite a {
   background-color: var(--DarkBlue);
@@ -493,6 +570,7 @@ h5 {
   max-height: 500px;
   background-color: var(--White);
   border-radius: 5px;
+  overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -518,9 +596,26 @@ h5 {
   .fixed-top {
     max-width: 100%;
   }
+  .Header {
+    position: relative;
+  }
+  .table-responsive {
+    height: auto;
+    min-height: 400px;
+  }
+  .table.row {
+    height: auto;
+    max-height: 100%;
+    width: 1000px;
+    margin: 0;
+  }
+  .table.row .col-12.p-0 {
+    top: 0;
+    padding-bottom: 0 !important;
+  }
   .footer {
-    left: 0;
-    width: calc(100vw - 0px) !important;
+    left: 0 !important;
+    width: 100% !important;
   }
 }
 @media (max-width: 535px) {

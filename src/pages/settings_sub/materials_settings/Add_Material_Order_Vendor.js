@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import Footer from "../components/Footer";
+import styled from "styled-components";
+import Footer from "../../components/Footer";
 
-class AddUser extends Component {
+const postStatus = [{ title: "Active" }, { title: "In-Active" }];
+
+class AddMaterialOrderVendor extends Component {
   state = {
     show: false,
-    Succsaved: false
+    Succsaved: false,
+    postStatus: postStatus
   };
   show = () => {
     this.setState({ show: true });
@@ -24,39 +28,32 @@ class AddUser extends Component {
     this.setState({ show: false });
   };
   render() {
+    const { postStatus } = this.state;
     return (
       <div className="Wrapper fixedCenter p-5">
         {this.props.close}
-        <div className="text-right">
+        <div className="">
           <div className="text-left">
-            <h6>Add User</h6>
+            <h6>Add Material Order Vendor</h6>
           </div>
           <input
             type="text"
-            placeholder="Project ID"
+            placeholder="Name"
             className="form-control mb-2 form-control-sm"
             onChange={this.show}
           />
-          <input
-            type="text"
-            placeholder="User ID"
-            AddUser
-            className="form-control mb-2 form-control-sm"
-            onChange={this.show}
-          />
-          <input
-            type="text"
-            placeholder="User Email"
-            AddUser
-            className="form-control mb-2 form-control-sm"
-            onChange={this.show}
-          />
-          <input
-            type="text"
-            placeholder="Permission Type"
-            className="form-control mb-2 form-control-sm"
-            onChange={this.show}
-          />
+          {postStatus.map(row => (
+            <Status status={row.title} style={{ marginRight: "10px" }}>
+              {row.title}
+              <input
+                type="radio"
+                key={row.title}
+                name="status"
+                value={row.title}
+                style={{ marginLeft: "10px" }}
+              />
+            </Status>
+          ))}
           <div className={this.state.show ? "show" : "hide"}>
             <Footer
               pop={"popup"}
@@ -72,5 +69,8 @@ class AddUser extends Component {
     );
   }
 }
-
-export default AddUser;
+export const Status = styled.label`
+  color: ${props => (props.status === "Active" ? "#8BC34A" : "#F44336")};
+  text-align: center;
+`;
+export default AddMaterialOrderVendor;

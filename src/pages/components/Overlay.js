@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: ${props => (props.topNavOverlay ? "0px" : "50px")};
   left: 0;
   width: 100vw;

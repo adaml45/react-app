@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Footer from "../components/Footer";
 
-class AddUser extends Component {
+class AddJob extends Component {
   state = {
     show: false,
     Succsaved: false
@@ -29,7 +29,7 @@ class AddUser extends Component {
         {this.props.close}
         <div className="text-right">
           <div className="text-left">
-            <h6>Add User</h6>
+            <h6>Add Job</h6>
           </div>
           <input
             type="text"
@@ -39,21 +39,27 @@ class AddUser extends Component {
           />
           <input
             type="text"
-            placeholder="User ID"
+            placeholder="Job Name"
             AddUser
             className="form-control mb-2 form-control-sm"
             onChange={this.show}
           />
           <input
             type="text"
-            placeholder="User Email"
+            placeholder="Job Type"
             AddUser
             className="form-control mb-2 form-control-sm"
             onChange={this.show}
           />
           <input
             type="text"
-            placeholder="Permission Type"
+            placeholder="HUB"
+            className="form-control mb-2 form-control-sm"
+            onChange={this.show}
+          />
+          <input
+            type="text"
+            placeholder="Days To Construction"
             className="form-control mb-2 form-control-sm"
             onChange={this.show}
           />
@@ -73,4 +79,4 @@ class AddUser extends Component {
   }
 }
 
-export default AddUser;
+export default AddJob;

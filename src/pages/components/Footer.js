@@ -49,8 +49,8 @@ class Footer extends Component {
 export const FooterWrap = styled.div`
   position: ${props => (props.popup ? "absolute" : "fixed")};
   bottom: 0;
-  left: ${props => (props.popup ? "0" : "")};
-  width: ${props => (props.popup ? "100%" : "calc(100vw - 235px)")};
+  left: ${props => (props.popup ? "0" : "220px")};
+  width: ${props => (props.popup ? "100%" : "calc(100vw - 220px)")};
   height: auto;
   padding: 10px 0;
   background-color: var(--LightGray);

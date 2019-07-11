@@ -27,7 +27,7 @@ class AddPermission extends Component {
     return (
       <div className="Wrapper fixedCenter p-5">
         {this.props.close}
-        <div className="table-responsive text-right">
+        <div className="text-right">
           <div className="text-left">
             <h6>Add Permission</h6>
           </div>

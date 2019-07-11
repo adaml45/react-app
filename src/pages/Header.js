@@ -71,8 +71,46 @@ const JobsSettings = props => (
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
   </DynamicImport>
 );
+const AliasType = props => (
+  <DynamicImport load={() => import("./settings_sub/jobs_settings/Alias_Type")}>
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const CommunityList = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/jobs_settings/Community_List")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const RegionList = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/jobs_settings/Region_List")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const NodeType = props => (
+  <DynamicImport load={() => import("./settings_sub/jobs_settings/Node_Type")}>
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
 const PermitsSettings = props => (
   <DynamicImport load={() => import("./settings_sub/Permits_Settings")}>
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const PermitsVendors = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/permits_settings/Permits_Vendors")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const PermitType = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/permits_settings/Permit_Type")}
+  >
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
   </DynamicImport>
 );
@@ -81,8 +119,41 @@ const GigsSettings = props => (
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
   </DynamicImport>
 );
+const GigType = props => (
+  <DynamicImport load={() => import("./settings_sub/gigs_settings/Gig_Type")}>
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
 const MaterialsSettings = props => (
   <DynamicImport load={() => import("./settings_sub/Materials_Settings")}>
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const UOM = props => (
+  <DynamicImport load={() => import("./settings_sub/materials_settings/Uom")}>
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const MaterialGroups = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/materials_settings/Material_Groups")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const MaterialParts = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/materials_settings/Material_Parts")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const MaterialOrderVendors = props => (
+  <DynamicImport
+    load={() =>
+      import("./settings_sub/materials_settings/Material_Order_Vendors")
+    }
+  >
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
   </DynamicImport>
 );
@@ -91,6 +162,28 @@ const ContractorSettings = props => (
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
   </DynamicImport>
 );
+const PrimeContractors = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/contractors_settings/Prime_Contractors")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const Subcontractors = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/contractors_settings/Subcontractors")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+const Crews = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/contractors_settings/Crews")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+
 const Users = props => (
   <DynamicImport load={() => import("./settings_sub/Users")}>
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
@@ -111,11 +204,27 @@ const PassingsSettings = props => (
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
   </DynamicImport>
 );
+const BuildingType = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/passings_settings/Building_Types")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+
 const ActivitiesSettings = props => (
   <DynamicImport load={() => import("./settings_sub/Activities_Settings")}>
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
   </DynamicImport>
 );
+const ActivitySettings = props => (
+  <DynamicImport
+    load={() => import("./settings_sub/activities_settings/Activity_Settings")}
+  >
+    {Component => (Component === null ? <Loading /> : <Component {...props} />)}
+  </DynamicImport>
+);
+
 const Schedule = props => (
   <DynamicImport load={() => import("./Schedule")}>
     {Component => (Component === null ? <Loading /> : <Component {...props} />)}
@@ -153,23 +262,19 @@ const Completed = props => (
 );
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      condition: false,
-      mobileToggle: false,
-      conditionMessage: false,
-      conditionUser: false,
-      dropped: false,
-      isActive: 0,
-      activeItem: 0,
-      message: 0,
-      que: 0,
-      liSettings: liSettings,
-      liSchedule: liSchedule,
-      NavText: "Home"
-    };
-  }
+  state = {
+    condition: false,
+    mobileToggle: false,
+    conditionMessage: false,
+    conditionUser: false,
+    isActive: 0,
+    activeItem: 0,
+    message: 0,
+    que: 0,
+    liSettings: liSettings,
+    liSchedule: liSchedule,
+    NavText: "Home"
+  };
 
   toggleMenu = () => {
     this.setState({ condition: true });
@@ -216,25 +321,26 @@ class Header extends Component {
         $("#mainNavOverlay").addClass("hide");
         $(".innerNavName #Home").removeClass("active");
       });
-      $(".jobsDrop").wrapAll('<div id="jobsWrap" class="dropToggle"></div>');
-      $(".PermitsDrop").wrapAll('<div id="jobsWrap" class="dropToggle"></div>');
-      $(".GigsDrop").wrapAll('<div id="jobsWrap" class="dropToggle"></div>');
-      $(".ActivitiesDrop").wrapAll(
-        '<div id="jobsWrap" class="dropToggle"></div>'
-      );
-      $(".PassingsDrop").wrapAll(
-        '<div id="jobsWrap" class="dropToggle"></div>'
-      );
-      $(".ContractorsDrop").wrapAll(
-        '<div id="jobsWrap" class="dropToggle"></div>'
-      );
-      $(".MaterialsDrop").wrapAll(
-        '<div id="jobsWrap" class="dropToggle"></div>'
-      );
-      $(".drop").click(function() {
+      $(".jobsDrop").wrapAll('<div class="jobsWrap dropToggle"></div>');
+      $(".PermitsDrop").wrapAll('<div class="jobsWrap dropToggle"></div>');
+      $(".GigsDrop").wrapAll('<div class="jobsWrap dropToggle"></div>');
+      $(".ActivitiesDrop").wrapAll('<div  class="jobsWrap dropToggle"></div>');
+      $(".PassingsDrop").wrapAll('<div class="jobsWrap dropToggle"></div>');
+      $(".ContractorsDrop").wrapAll('<div class="jobsWrap dropToggle"></div>');
+      $(".MaterialsDrop").wrapAll('<div class="jobsWrap dropToggle"></div>');
+      $(".jobsWrap").click(function() {
+        $(this).addClass("activeWrap");
+      });
+      $(".navDrop").click(function() {
+        $(".jobsWrap")
+          .addClass("dropToggle")
+          .removeClass("activeWrap");
+        $(".drop").removeClass("up");
         $(this)
-          .closest("#jobsWrap")
-          .toggleClass("dropToggle");
+          .closest(".jobsWrap")
+          .toggleClass("dropToggle")
+          .find(".drop")
+          .addClass("up");
       });
     });
     setTimeout(() => {
@@ -480,8 +586,8 @@ class Header extends Component {
                           id="Settings"
                           className={
                             this.state.activeItem === liSetting.index
-                              ? "nav-link active"
-                              : "nav-link"
+                              ? "nav-link navDrop active"
+                              : "nav-link navDrop"
                           }
                           onClick={this.LiItemClick.bind(this, liSetting.index)}
                         >
@@ -722,25 +828,45 @@ class Header extends Component {
                         onClick={this.active.bind(this, 2)}
                         className={liSetting.class}
                       >
-                        <span className="drop">
+                        <span className={"drop"}>
                           <FontAwesomeIcon
                             icon="angle-down"
                             color="#6199b4"
                             size="1x"
                           />
                         </span>
-                        <Link
-                          to={liSetting.url}
-                          id={liSetting.id}
-                          className={
-                            this.state.activeItem === liSetting.index
-                              ? "nav-link active"
-                              : "nav-link"
-                          }
-                          onClick={this.LiItemClick.bind(this, liSetting.index)}
-                        >
-                          {liSetting.name}
-                        </Link>
+                        {liSetting.linkOut === "false" ? (
+                          <p
+                            id={liSetting.id}
+                            className={
+                              this.state.activeItem === liSetting.index
+                                ? "nav-link navDrop active"
+                                : "nav-link navDrop"
+                            }
+                            onClick={this.LiItemClick.bind(
+                              this,
+                              liSetting.index
+                            )}
+                          >
+                            {liSetting.name}
+                          </p>
+                        ) : (
+                          <Link
+                            to={liSetting.url}
+                            id={liSetting.id}
+                            className={
+                              this.state.activeItem === liSetting.index
+                                ? "nav-link navDrop active"
+                                : "nav-link navDrop"
+                            }
+                            onClick={this.LiItemClick.bind(
+                              this,
+                              liSetting.index
+                            )}
+                          >
+                            {liSetting.name}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -752,21 +878,6 @@ class Header extends Component {
             className={this.state.mobileToggle ? "logo toggleMobile" : "logo"}
           >
             <img src={Logo} alt="Logo" width="120px" />
-          </div>
-          <div
-            className={
-              this.state.loading ? "loaderWrapper show" : "loaderWrapper hide"
-            }
-          >
-            <div className="loader">
-              <div className="loader__bar" />
-              <div className="loader__bar" />
-              <div className="loader__bar" />
-              <div className="loader__bar" />
-              <div className="loader__bar" />
-              <div className="loader__ball" />
-              <div className="loadingText">Loading Your Data...</div>
-            </div>
           </div>
         </header>
         <Switch>
@@ -790,15 +901,40 @@ class Header extends Component {
 
           <Route path="/Settings" component={Settings} />
           <Route path="/Job_Settings" component={JobsSettings} />
+          <Route path="/Alias_Type" component={AliasType} />
+          <Route path="/Community_List" component={CommunityList} />
+          <Route path="/Region_List" component={RegionList} />
+          <Route path="/Node_Type" component={NodeType} />
           <Route path="/Permits_Settings" component={PermitsSettings} />
+          <Route path="/Permit_Vendors" component={PermitsVendors} />
+          <Route path="/Permit_Type" component={PermitType} />
+
           <Route path="/Gigs_Settings" component={GigsSettings} />
+          <Route path="/Gig_Type" component={GigType} />
+
           <Route path="/Materials_Settings" component={MaterialsSettings} />
+          <Route path="/UOM" component={UOM} />
+          <Route path="/Material_Groups" component={MaterialGroups} />
+          <Route path="/Material_Parts" component={MaterialParts} />
+          <Route
+            path="/Material_Order_Vendors"
+            component={MaterialOrderVendors}
+          />
+
           <Route path="/Contractor_Settings" component={ContractorSettings} />
+          <Route path="/Prime_Contractors" component={PrimeContractors} />
+          <Route path="/Subcontractors" component={Subcontractors} />
+          <Route path="/Crews" component={Crews} />
+
           <Route path="/Users" component={Users} />
           <Route path="/Users_Edit" component={UsersEdit} />
           <Route path="/Permissions_Settings" component={PermissionsSettings} />
+
           <Route path="/Passings_Settings" component={PassingsSettings} />
+          <Route path="/Building_Types" component={BuildingType} />
+
           <Route path="/Activities_Settings" component={ActivitiesSettings} />
+          <Route path="/Activity_Settings" component={ActivitySettings} />
         </Switch>
       </Router>
     );

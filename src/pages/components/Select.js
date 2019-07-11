@@ -10,6 +10,9 @@ class Select extends Component {
   toggleSelect = () => {
     this.setState({ show: !this.state.show });
   };
+  toggleSelectInOut = () => {
+    this.setState({ show: !this.state.show });
+  };
   toggleSelectOut = () => {
     this.setState({ show: false });
   };
@@ -20,16 +23,17 @@ class Select extends Component {
           <ButtonWrap
             type="button"
             className="btn  btn-sm"
-            onMouseOver={this.toggleSelect}
+            onClick={this.toggleSelectInOut}
           >
             {this.props.selectStatus}
+            <span style={{ paddingLeft: "10px" }}>
+              <FontAwesomeIcon icon="angle-down" color="#6199b4" size="1x" />
+            </span>
           </ButtonWrap>
-          <FontAwesomeIcon icon="angle-down" color="#6199b4" size="1x" />
+
           <div
             className={
-              this.state.show === true
-                ? "dropdown-select show"
-                : "dropdown-select hide"
+              this.state.show ? "dropdown-select show" : "dropdown-select hide"
             }
             onMouseLeave={this.toggleSelectOut}
           >
@@ -47,22 +51,32 @@ export const SelectWrap = styled.div`
     position: absolute;
     top: 32px;
     left: 0;
+    right: 0;
+    z-index: 9;
     height: auto;
     background-color: var(--White);
     border-radius: 0 0 5px 5px;
-    border-top: solid 1px var(--DarkBlue);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   .btn {
+    width: 100%;
     line-height: 1;
     font-size: 13px;
     color: var(--BrightBlue);
+    border-radius: 0 0;
+    border: none;
+    border-bottom: solid thin transparent;
+    text-align: inherit;
     &:hover {
-      color: var(--White);
+      color: var(--LightBlue);
+      background-color: transparent;
+      border-bottom: solid thin var(--LightBlue);
     }
   }
   .dropdown-item {
     margin: 0;
+    font-size: 13px;
+    text-align: inherit;
     &:not(:last-of-type) {
       border-bottom: solid thin #ddd;
     }

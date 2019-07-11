@@ -110,82 +110,81 @@ class Users extends Component {
     const { postsRow, postHead, search } = this.state;
     return (
       <div className="wrapper" id="wrapper">
-        <div className="table-responsive">
-          <div className="row container-fluid above">
-            <div className="col-6 text-left pt-3">
-              <h5>Users</h5>
-            </div>
-            <div className="col-6 text-right innerPageNav">
-              <div className="">
-                <FontAwesomeIcon
-                  icon="search"
-                  size="lg"
-                  color="#ddd"
-                  onMouseEnter={this.showSearch}
-                />
-              </div>
-              <input
-                type="text"
-                className={
-                  this.state.showSearch
-                    ? "form-control filterInput show"
-                    : "form-control filterInput hide"
-                }
-                onChange={this.handleChange}
-                onMouseLeave={this.toggleMenu2}
-                placeholder="Search..."
-                value={search}
+        <div className="row container-fluid above">
+          <div className="col-6 text-left pt-3">
+            <h5>Users</h5>
+          </div>
+          <div className="col-6 text-right innerPageNav">
+            <div className="">
+              <FontAwesomeIcon
+                icon="search"
+                size="lg"
+                color="#ddd"
+                onMouseEnter={this.showSearch}
               />
-              <div className="">
-                <FontAwesomeIcon
-                  icon="sort-amount-down"
-                  size="lg"
-                  color="#ddd"
-                  onMouseEnter={this.showRowFilter}
-                />
-              </div>
-              <div className="">
-                <FontAwesomeIcon
-                  icon="plus"
-                  size="lg"
-                  color="#495971"
-                  onClick={this.toggleAddAgent}
-                />
-              </div>
             </div>
-            <div className="col-12 text-right">
-              <div
-                className={
-                  this.state.showRowFilter
-                    ? "card filter tableToggleWrap"
-                    : "card filter tableToggleWrap toggled"
-                }
-                onMouseLeave={this.toggleMenu2}
-              >
-                <div className="card-body">
-                  <ul>
-                    <li className="" onClick={this.sortByPriceAsc}>
-                      <FontAwesomeIcon
-                        icon="sort-alpha-down"
-                        color="#495971"
-                        size="1x"
-                      />{" "}
-                      ASC
-                    </li>
-                    <li className="" onClick={this.sortByPriceDesc}>
-                      <FontAwesomeIcon
-                        icon="sort-alpha-up"
-                        color="#495971"
-                        size="1x"
-                      />{" "}
-                      DESC
-                    </li>
-                  </ul>
-                </div>
+            <input
+              type="text"
+              className={
+                this.state.showSearch
+                  ? "form-control filterInput show"
+                  : "form-control filterInput hide"
+              }
+              onChange={this.handleChange}
+              onMouseLeave={this.toggleMenu2}
+              placeholder="Search..."
+              value={search}
+            />
+            <div className="">
+              <FontAwesomeIcon
+                icon="sort-amount-down"
+                size="lg"
+                color="#ddd"
+                onMouseEnter={this.showRowFilter}
+              />
+            </div>
+            <div className="">
+              <FontAwesomeIcon
+                icon="plus"
+                size="lg"
+                color="#495971"
+                onClick={this.toggleAddAgent}
+              />
+            </div>
+          </div>
+          <div className="col-12 text-right">
+            <div
+              className={
+                this.state.showRowFilter
+                  ? "card filter tableToggleWrap"
+                  : "card filter tableToggleWrap toggled"
+              }
+              onMouseLeave={this.toggleMenu2}
+            >
+              <div className="card-body">
+                <ul>
+                  <li className="" onClick={this.sortByPriceAsc}>
+                    <FontAwesomeIcon
+                      icon="sort-alpha-down"
+                      color="#495971"
+                      size="1x"
+                    />{" "}
+                    ASC
+                  </li>
+                  <li className="" onClick={this.sortByPriceDesc}>
+                    <FontAwesomeIcon
+                      icon="sort-alpha-up"
+                      color="#495971"
+                      size="1x"
+                    />{" "}
+                    DESC
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-
+        </div>
+        <div className="table-responsive">
           <Table
             Head={postHead.map(head => (
               <div
@@ -263,4 +262,5 @@ export const Status = styled.div`
     props.status === "Active" ? "#8BC34A" : "#F44336"};
   text-align: center;
 `;
+
 export default Users;

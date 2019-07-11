@@ -1,88 +1,42 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Table from "../components/Table";
-import AddPermission from "./Add_Permission";
-import { Overlay } from "../components/Overlay";
-import Footer from "../components/Footer";
-
+import Table from "../../components/Table";
+import Select from "../../components/Select";
+import AddMaterialGroup from "./Add_Material_Group";
+import Footer from "../../components/Footer";
+import { Overlay } from "../../components/Overlay";
 const postsRow = [
   {
     id: 1,
-    Type: "Admin",
-    Description: "Add Type Description Here"
-  },
-  {
-    id: 8,
-    Type: "Manager",
-    Description: "Add Type Description Here"
-  },
-  {
-    id: 3,
-    Type: "Client",
-    Description: "Add Type Description Here"
-  },
-  {
-    id: 4,
-    Type: "Client No Edit",
-    Description: "No Edit"
-  },
-  {
-    id: 9,
-    Type: "PRG Employee",
-    Description: "Add Type Description Here"
-  },
-  {
-    id: 11,
-    Type: "Read Only",
-    Description: "No Edit"
-  },
-  {
-    id: 7,
-    Type: "Full View",
-    Description: "No Edit"
-  },
-  {
-    id: 2,
-    Type: "Accounting",
-    Description: "Add Type Description Here"
-  },
-  {
-    id: 10,
-    Type: "Prime Contractor",
-    Description: "Add Type Description Here"
-  },
-  {
-    id: 5,
-    Type: "Contractor",
-    Description: "Add Type Description Here"
-  },
-  {
-    id: 6,
-    Type: "Contractor View",
-    Description: "No Dashboard"
+    Name: "NC DOT",
+    Status: "Active"
   }
 ];
-const postHead = [{ title: "Type" }, { title: "Description" }];
+const postHead = [
+  { title: "ID" },
+  { title: "Group Name" },
+  { title: "Status" }
+];
+const postStatus = [{ title: "Active" }, { title: "In-Active" }];
 function searchFilter(search) {
   return function(x) {
-    return x.Type.toLowerCase().includes(search.toLowerCase()) || !search;
+    return x.Name.toLowerCase().includes(search.toLowerCase()) || !search;
   };
 }
-
-class Permissions extends Component {
+class MaterialGroups extends Component {
   state = {
+    active: false,
+    show: false,
     condition: false,
     overlay: false,
-    showAddAgent: false,
-    showRowCondition: false,
-    showRowFilter: false,
     showSearch: false,
-    postsRow: postsRow,
     postHead: postHead,
+    postsRow: postsRow,
+    postStatus: postStatus,
     search: "",
-    Type: ""
+    selectStatus: ""
   };
-
   toggleMenu = () => {
     this.setState({ condition: true });
     this.setState({ showRowFilter: true });
@@ -102,6 +56,12 @@ class Permissions extends Component {
     this.setState({ showAddAgent: false });
     this.setState({ overlay: false });
   };
+  handleChange = e => {
+    this.setState({ search: e.target.value });
+  };
+  showSearch = () => {
+    this.setState({ showSearch: !this.state.showSearch });
+  };
   showRow = () => {
     this.setState({ showRowCondition: true });
   };
@@ -109,13 +69,10 @@ class Permissions extends Component {
     this.setState({ showRowCard: false });
     this.setState({ showRowFilter: true });
   };
-  handleChange = e => {
-    this.setState({ search: e.target.value });
-  };
-  showSearch = () => {
-    this.setState({ showSearch: true });
-    this.setState({ showRowFilter: false });
-    this.setState({ showRowCard: false });
+  selectStatusClick = e => {
+    this.setState({ selectStatus: e.target.id });
+    this.setState({ active: true });
+    this.setState({ show: true });
   };
   sortByPriceAsc = () => {
     this.setState(prevState => {
@@ -128,31 +85,6 @@ class Permissions extends Component {
       this.state.postsRow.sort((a, b) => b.id - a.id);
       this.setState({ showRowFilter: false });
     });
-  };
-  changeType(id, e) {
-    //const postsRow = Object.assign([], this.state.postsRow);
-    //postsRow.splice(index, 1);
-    //this.setState({ postsRow: postsRow });
-    const index = this.state.postsRow.findIndex(row => {
-      return row.id === id;
-    });
-    const row = Object.assign([], this.state.postsRow[index]);
-    row.Type = e.target.value;
-    const postsRow = Object.assign([], this.state.postsRow);
-    postsRow[index] = row;
-    this.setState({ postsRow: postsRow });
-    this.setState({ show: true });
-  }
-  changeDesc = (id, e) => {
-    const index = this.state.postsRow.findIndex(row => {
-      return row.id === id;
-    });
-    const row = Object.assign([], this.state.postsRow[index]);
-    row.Description = e.target.value;
-    const postsRow = Object.assign([], this.state.postsRow);
-    postsRow[index] = row;
-    this.setState({ postsRow: postsRow });
-    this.setState({ show: true });
   };
   cancelFooter = () => {
     this.setState({ show: false });
@@ -169,12 +101,12 @@ class Permissions extends Component {
     }, 3000);
   };
   render() {
-    const { postsRow, postHead, search } = this.state;
+    const { postHead, postsRow, search, postStatus } = this.state;
     return (
       <div className="wrapper" id="wrapper">
         <div className="row container-fluid above">
           <div className="col-6 text-left pt-3">
-            <h5>Permissions</h5>
+            <h5>Material Groups</h5>
           </div>
           <div className="col-6 text-right innerPageNav">
             <div className="">
@@ -193,7 +125,7 @@ class Permissions extends Component {
                   : "form-control filterInput hide"
               }
               onChange={this.handleChange}
-              onMouseLeave={this.toggleMenu2}
+              onMouseLeave={this.showSearch}
               placeholder="Search..."
               value={search}
             />
@@ -249,45 +181,53 @@ class Permissions extends Component {
         <div className="table-responsive">
           <Table
             Head={postHead.map(head => (
-              <div className="col-2" key={head.title}>
+              <div
+                className={head.title === "ID" ? "col-auto" : "col-2"}
+                key={head.title}
+                style={{
+                  display: head.title === "ID" ? "None" : "inline-block"
+                }}
+              >
                 {head.title}
               </div>
             ))}
-            Body={postsRow.filter(searchFilter(search)).map((row, index) => (
-              <div className="rowData  col-12" key={row.id}>
+            Body={postsRow.filter(searchFilter(search)).map(row => (
+              <div className="rowData col-12" key={row.id} id={row.id}>
                 <div className="col-2">
-                  <input
-                    id={row.id}
-                    type="text"
-                    value={row.Type}
-                    className="form-control form-control-sm"
-                    onChange={this.changeType.bind(this, row.id)}
-                  />
+                  <div>{row.Name}</div>
                 </div>
-                <div className="col-10">
-                  <input
-                    id={row.id}
-                    type="text"
-                    value={row.Description}
-                    className="form-control form-control-sm"
-                    onChange={this.changeDesc.bind(this, row.id)}
+                <div className="col-2">
+                  <Select
+                    selectStatus={
+                      this.state.selectStatus
+                        ? this.state.selectStatus
+                        : row.Status
+                    }
+                    selectItems={postStatus.map(status => (
+                      <Status
+                        status={status.title}
+                        className={
+                          status.title === row.Status
+                            ? " dropdown-item"
+                            : status.title === this.state.selectStatus
+                            ? " activeSelect dropdown-item"
+                            : "dropdown-item"
+                        }
+                        key={status.title}
+                        id={status.title}
+                        onClick={this.selectStatusClick}
+                      >
+                        {status.title}
+                      </Status>
+                    ))}
                   />
                 </div>
               </div>
             ))}
           />
-          <div className={this.state.show ? "show" : "hide"}>
-            <Footer
-              sucessfulSaveFooterColor={this.state.Succsaved ? "greenBgd" : ""}
-              sucessfulSave={this.state.Succsaved ? "show" : "hide"}
-              footerBtns={this.state.Succsaved ? "hide" : "show"}
-              Cancel={<span onClick={this.cancelFooter}> Cancel</span>}
-              Save={<span onClick={this.saveClick}> Save</span>}
-            />
-          </div>
         </div>
         <div className={this.state.showAddAgent ? "show" : "hide"}>
-          <AddPermission
+          <AddMaterialGroup
             close={
               <div className="closeCard" onClick={this.close}>
                 {" "}
@@ -301,9 +241,28 @@ class Permissions extends Component {
           id="mainNavOverlay"
           className={this.state.overlay ? "show" : "hide"}
         />
+        <div className={this.state.show ? "show" : "hide"}>
+          <Footer
+            sucessfulSaveFooterColor={this.state.Succsaved ? "greenBgd" : ""}
+            sucessfulSave={this.state.Succsaved ? "show" : "hide"}
+            footerBtns={this.state.Succsaved ? "hide" : "show"}
+            Cancel={<span onClick={this.cancelFooter}> Cancel</span>}
+            Save={<span onClick={this.saveClick}> Save</span>}
+          />
+        </div>
       </div>
     );
   }
 }
-
-export default Permissions;
+export const Status = styled.p`
+  color: var(--White) !important;
+  background-color: ${props =>
+    props.status === "Active" ? "#8BC34A !important" : "#F44336 !important"};
+  text-align: center;
+  &:hover {
+    color: ${props =>
+      props.status === "Active" ? "#8BC34A !important" : "#F44336 !important"};
+    background-color: var(--White) !important;
+  }
+`;
+export default MaterialGroups;
