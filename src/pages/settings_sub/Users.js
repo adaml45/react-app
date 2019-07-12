@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "../components/Table";
@@ -7,32 +7,32 @@ import AddUser from "./Add_Users";
 import { Overlay } from "../components/Overlay";
 import UserData from "./DataCarrier.js";
 
-const postsRow = [
-  {
-    id: 1,
-    Project: "Project Name",
-    User: "Steve",
-    Email: "steve@email.com",
-    Type: "Admin",
-    Status: "Active"
-  },
-  {
-    id: 2,
-    Project: "Project Name",
-    User: "Sam",
-    Email: "sam@email.com",
-    Type: "Read Only",
-    Status: "Active"
-  },
-  {
-    id: 3,
-    Project: "Project Name",
-    User: "Shawn",
-    Email: "shawn@email.com",
-    Type: "Prime Contractor",
-    Status: "In-Active"
-  }
-];
+// const postsRow = [
+//   {
+//     id: 1,
+//     Project: "Project Name",
+//     User: "Steve",
+//     Email: "steve@email.com",
+//     Type: "Admin",
+//     Status: "Active"
+//   },
+//   {
+//     id: 2,
+//     Project: "Project Name",
+//     User: "Sam",
+//     Email: "sam@email.com",
+//     Type: "Read Only",
+//     Status: "Active"
+//   },
+//   {
+//     id: 3,
+//     Project: "Project Name",
+//     User: "Shawn",
+//     Email: "shawn@email.com",
+//     Type: "Prime Contractor",
+//     Status: "In-Active"
+//   }
+// ];
 const postHead = [
   { title: "ID" },
   { title: "Project Name" },
@@ -41,11 +41,11 @@ const postHead = [
   { title: "Permission Type" },
   { title: "Status" }
 ];
-function searchFilter(search) {
-  return function(x) {
-    return x.User.toLowerCase().includes(search.toLowerCase()) || !search;
-  };
-}
+// function searchFilter(search) {
+//   return function(x) {
+//     return x.User.toLowerCase().includes(search.toLowerCase()) || !search;
+//   };
+// }
 
 class Users extends Component {
   state = {
@@ -55,7 +55,6 @@ class Users extends Component {
     showRowCondition: false,
     showRowFilter: false,
     showSearch: false,
-    postsRow: postsRow,
     postHead: postHead,
     search: ""
   };
@@ -108,7 +107,7 @@ class Users extends Component {
   };
 
   render() {
-    const { postsRow, postHead, search } = this.state;
+    const { postHead, search } = this.state;
     return (
       <div className="wrapper" id="wrapper">
         <div className="row container-fluid above">
@@ -198,7 +197,7 @@ class Users extends Component {
                     {head.title}
                 </div>
             ))}
-            Body={<UserData />}
+            Body={<UserData UserSearch = {search} />}
 
 
             //        {postsRow.filter(searchFilter(search)).map(row => (

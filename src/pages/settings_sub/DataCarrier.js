@@ -3,13 +3,18 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
+function searchFilter(search) {
+    return function(x) {
+      return x.FullName.toLowerCase().includes(search.toLowerCase()) || !search;
+    };
+  }
+
 class UserData extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+    state = {
            userData: [],
-        };
-    }
+        
+    };
+    
     componentDidMount() {
         fetch('http://localhost:8080/api/user/1')
             .then(response => {
@@ -17,12 +22,15 @@ class UserData extends Component {
                 return response.json();
             })
             .then(data => this.setState({ userData: data }));
-        //console.log(this.state.userData);
+       
     }
     render() {
-        const { userData } = this.state;
+    const { userData } = this.state;
+    let searchString = this.props.UserSearch;
+    console.log(searchString);
+    
       return (
-            userData.map(row => (
+            userData.filter(searchFilter(searchString)).map(row => (
                 <Link
                     to={{
                         pathname: "/Users_Edit",
