@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "../components/Table";
 import AddUser from "./Add_Users";
 import { Overlay } from "../components/Overlay";
+import UserData from "./DataCarrier.js";
 
 const postsRow = [
   {
@@ -187,54 +188,57 @@ class Users extends Component {
         <div className="table-responsive">
           <Table
             Head={postHead.map(head => (
-              <div
-                className={head.title === "ID" ? "col-1" : "col-2"}
-                key={head.title}
-                style={{
-                  textAlign: head.title === "Status" ? "center" : "left"
-                }}
-              >
-                {head.title}
-              </div>
-            ))}
-            Body={postsRow.filter(searchFilter(search)).map(row => (
-              <Link
-                to={{
-                  pathname: "/Users_Edit",
-                  state: {
-                    id: row.id,
-                    project: row.Project,
-                    user: row.User,
-                    email: row.Email,
-                    type: row.Type,
-                    status: row.Status
-                  }
-                }}
-              >
-                <div className="rowData  col-12" key={row.id} id={row.id}>
-                  <div className="col-1">
-                    <div>{row.id}</div>
-                  </div>
-                  <div className="col-2">
-                    <div>{row.Project}</div>
-                  </div>
-                  <div className="col-2">
-                    <div>{row.User}</div>
-                  </div>
-                  <div className="col-2">
-                    <div>{row.Email}</div>
-                  </div>
-                  <div className="col-2">
-                    <div>{row.Type}</div>
-                  </div>
-                  <div className="col-2">
-                    <Status status={row.Status} className="status">
-                      {row.Status}
-                    </Status>
-                  </div>
+                <div
+                    className={head.title === "ID" ? "col-1" : "col-2"}
+                    key={head.title}
+                    style={{
+                        textAlign: head.title === "Status" ? "center" : "left"
+                    }}
+                >
+                    {head.title}
                 </div>
-              </Link>
             ))}
+            Body={<UserData />}
+
+
+            //        {postsRow.filter(searchFilter(search)).map(row => (
+            //  <Link
+            //    to={{
+            //      pathname: "/Users_Edit",
+            //      state: {
+            //        id: row.id,
+            //        project: row.Project,
+            //        user: row.User,
+            //        email: row.Email,
+            //        type: row.Type,
+            //        status: row.Status
+            //      }
+            //    }}
+            //  >
+            //    <div className="rowData  col-12" key={row.id} id={row.id}>
+            //      <div className="col-1">
+            //        <div>{row.id}</div>
+            //      </div>
+            //      <div className="col-2">
+            //        <div>{row.Project}</div>
+            //      </div>
+            //      <div className="col-2">
+            //        <div>{row.User}</div>
+            //      </div>
+            //      <div className="col-2">
+            //        <div>{row.Email}</div>
+            //      </div>
+            //      <div className="col-2">
+            //        <div>{row.Type}</div>
+            //      </div>
+            //      <div className="col-2">
+            //        <Status status={row.Status} className="status">
+            //          {row.Status}
+            //        </Status>
+            //      </div>
+            //    </div>
+            //  </Link>
+            //))}
           />
         </div>
         <div className={this.state.showAddAgent ? "show" : "hide"}>
