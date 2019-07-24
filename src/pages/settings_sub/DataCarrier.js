@@ -18,7 +18,7 @@ class UserData extends Component {
     componentDidMount() {
         fetch('http://localhost:8080/api/user/1')
             .then(response => {
-                console.log(response);
+                //console.log(response);
                 return response.json();
             })
             .then(data => this.setState({ userData: data }));
@@ -27,7 +27,7 @@ class UserData extends Component {
     render() {
     const { userData } = this.state;
     let searchString = this.props.UserSearch;
-    console.log(searchString);
+    //console.log(searchString);
     
       return (
             userData.filter(searchFilter(searchString)).map(row => (
@@ -37,10 +37,11 @@ class UserData extends Component {
                         state: {
                             id: row.ProjectUserID,
                             project: row.ProjectName,
-                            user: row.fullname,
-                            email: row.Email,
-                            type: row.Type,
-                            status: row.Status
+                            user: row.FullName,
+                            email: row.email,
+                            type: row.type,
+                            status: row.Status,
+                            userID: row.UserID
                         }
                     }}
                 >

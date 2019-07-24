@@ -7,63 +7,45 @@ import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const postStatus = [{ title: "Active" }, { title: "In-Active" }];
-const postType = [
-  {
-    Type: "Admin"
-  },
-  {
-    Type: "Manager"
-  },
-  {
-    Type: "Client"
-  },
-  {
-    Type: "Client No Edit"
-  },
-  {
-    Type: "PRG Employee"
-  },
-  {
-    Type: "Read Only"
-  },
-  {
-    Type: "Full View"
-  },
-  {
-    Type: "Accounting"
-  },
-  {
-    Type: "Prime Contractor"
-  },
-  {
-    Type: "Contractor"
-  },
-  {
-    Type: "Contractor View"
-  }
-];
+
 class UserEdit extends Component {
   state = {
     active: false,
     show: false,
     Succsaved: false,
     postStatus: postStatus,
-    postType: postType,
     selectType: "",
-    selectStatus: ""
+    selectStatus: "",
+    editData: [],
+    permType: []
   };
 
   componentDidMount() {
-    const Agent = props => {
+
+    const Agent = () => {
       let i = this.props.location.state.id;
-      let u = this.props.location.state.user;
+      let firstName = "";//this.state.editData[0].FirstName;
+      let lastName = "";//this.state.editData[0].LastName;
       let e = this.props.location.state.email;
       let p = this.props.location.state.project;
       let t = this.props.location.state.type;
       let s = this.props.location.state.status;
-      this.setState({ i, u, t, p, s, e });
+      this.setState({ i, lastName, firstName, t, p, s, e });
     };
-    Agent();
+
+    fetch("http://localhost:8080/api/permissionTypes")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => this.setState({permType: data}));
+
+    fetch("http://localhost:8080/api/userInfo." + this.props.location.state.userID)
+      .then(response => {
+        //console.log(response.json())
+        return response.json()
+      })
+      .then(data => this.setState({editData: data}))
+      .then(Agent());
   }
   selectTypeClick = e => {
     this.setState({ selectType: e.target.id });
@@ -78,7 +60,11 @@ class UserEdit extends Component {
   cancelFooter = () => {
     this.setState({ show: false });
   };
-  changeName = e => {
+  changeFirstName = e => {
+    this.setState({ u: e.target.u });
+    this.setState({ show: true });
+  };
+  changeLastName = e => {
     this.setState({ u: e.target.u });
     this.setState({ show: true });
   };
@@ -88,6 +74,8 @@ class UserEdit extends Component {
   };
   saveClick = () => {
     this.setState({ Succsaved: true });
+    //let datFirst = 
+
     setTimeout(() => {
       this.setState({
         Succsaved: false
@@ -98,7 +86,7 @@ class UserEdit extends Component {
     }, 3000);
   };
   render() {
-    const { i, u, t, p, s, e, postStatus, postType } = this.state;
+    const { i,  t, p, s, e, postStatus, editData, permType } = this.state;
     return (
       <div className="wrapper" id="wrapper">
         <div className="row container-fluid above">
@@ -119,7 +107,8 @@ class UserEdit extends Component {
           <Table
             Head={
               <React.Fragment>
-                <div className="col-2">User</div>
+                <div className="col-2">First Name</div>
+                <div className="col-2">Last Name</div>
                 <div className="col-2">Email</div>
                 <div className="col-2">Project</div>
                 <div className="col-2">Type</div>
@@ -130,10 +119,18 @@ class UserEdit extends Component {
               <div className="rowData  col-12" id={i}>
                 <div className="col-2">
                   <input
-                    type="text "
-                    value={u}
+                    type="text"
+                    defaultValue={editData.map((data) => {return data.FirstName})}
                     className="form-control form-control-sm"
-                    onChange={this.changeName}
+                    onChange={this.changeFirstName}
+                  />
+                </div>
+                <div className="col-2">
+                  <input
+                    type="text"
+                    defaultValue={editData.map((data) => {return data.LastName})}
+                    className="form-control form-control-sm"
+                    onChange={this.changeLastName}
                   />
                 </div>
                 <div className="col-2">
@@ -150,23 +147,23 @@ class UserEdit extends Component {
                 <div className="col-2">
                   <Select
                     status={t}
-                    selectStatus={
+                    selectStatus={ 
                       this.state.selectType ? this.state.selectType : t
                     }
-                    selectItems={postType.map(type => (
+                    selectItems={permType.map(type => (
                       <p
                         className={
-                          type.Type === t
+                          type.UTName === t
                             ? "active dropdown-item"
-                            : type.Type === this.state.selectType
+                            : type.UTName === this.state.selectType
                             ? " activeSelect dropdown-item"
                             : "dropdown-item"
                         }
-                        key={type.Type}
-                        id={type.Type}
+                        key={type.UTID}
+                        id={type.UTName}
                         onClick={this.selectTypeClick}
                       >
-                        {type.Type}
+                        {type.UTName}
                       </p>
                     ))}
                   />
