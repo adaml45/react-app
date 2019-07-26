@@ -17,9 +17,19 @@ class UserEdit extends Component {
     selectType: "",
     selectStatus: "",
     editData: [],
-    permType: []
+    permType: [],
+    first_name: '',
+    last_name: '',
+    email: ''
   };
 
+  constructor(props){
+    super(props);
+
+    this.changeFirstName = this.changeFirstName.bind(this);
+    this.changeLastName = this.changeLastName.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+  }
   componentDidMount() {
 
     const Agent = () => {
@@ -44,7 +54,10 @@ class UserEdit extends Component {
         //console.log(response.json())
         return response.json()
       })
-      .then(data => this.setState({editData: data}))
+      .then(data => {this.setState({editData: data, first_name: data[0].FirstName, last_name: data[0].LastName, email: data[0].Email})
+        console.log(data);
+
+      })
       .then(Agent());
   }
   selectTypeClick = e => {
@@ -61,32 +74,53 @@ class UserEdit extends Component {
     this.setState({ show: false });
   };
   changeFirstName = e => {
-    this.setState({ u: e.target.u });
+    this.setState({ first_name: e.target.value });
     this.setState({ show: true });
   };
   changeLastName = e => {
-    this.setState({ u: e.target.u });
+    this.setState({ last_name: e.target.value });
     this.setState({ show: true });
   };
   changeEmail = e => {
-    this.setState({ e: e.target.e });
+    this.setState({ email: e.target.value });
     this.setState({ show: true });
   };
   saveClick = () => {
-    this.setState({ Succsaved: true });
+    //this.setState({ Succsaved: true });
     //let datFirst = 
+    let updateURI = "http://localhost:8080/api/updateUser-" + this.props.location.state.userID + '-' + this.state.first_name + '-'
+       + this.state.last_name + '-' +  this.state.email + '-' + this.state.s + '-' + this.state.t;
 
-    setTimeout(() => {
-      this.setState({
-        Succsaved: false
-      });
-      this.setState({
-        show: false
-      });
-    }, 3000);
+    fetch(updateURI, {method:'POST', body: {lastName: this.state.last_name, firstName: this.state.first_name}})
+      .then(response => {
+        console.log(response)
+        this.setState({Succsaved: true})
+        setTimeout(() => {
+          this.setState({
+            Succsaved: false
+          });
+          this.setState({
+            show: false
+          });
+          console.log('updated')
+          //this.setState({state: this.state});
+        }, 3000);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+    // setTimeout(() => {
+    //   this.setState({
+    //     Succsaved: false
+    //   });
+    //   this.setState({
+    //     show: false
+    //   });
+    // }, 3000);
   };
   render() {
-    const { i,  t, p, s, e, postStatus, editData, permType } = this.state;
+    const { i, t, p, s, e, postStatus, editData, permType, first_name, last_name, email } = this.state;
     return (
       <div className="wrapper" id="wrapper">
         <div className="row container-fluid above">
@@ -120,7 +154,8 @@ class UserEdit extends Component {
                 <div className="col-2">
                   <input
                     type="text"
-                    defaultValue={editData.map((data) => {return data.FirstName})}
+                    //defaultValue={editData.map((data) => {return data.FirstName})}
+                    value={this.state.first_name}
                     className="form-control form-control-sm"
                     onChange={this.changeFirstName}
                   />
@@ -128,7 +163,8 @@ class UserEdit extends Component {
                 <div className="col-2">
                   <input
                     type="text"
-                    defaultValue={editData.map((data) => {return data.LastName})}
+                    //defaultValue={editData.map((data) => {return data.LastName})}
+                    value={last_name}
                     className="form-control form-control-sm"
                     onChange={this.changeLastName}
                   />
@@ -136,7 +172,7 @@ class UserEdit extends Component {
                 <div className="col-2">
                   <input
                     type="text "
-                    value={e}
+                    value={email}
                     className="form-control form-control-sm"
                     onChange={this.changeEmail}
                   />
